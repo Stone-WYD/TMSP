@@ -7,6 +7,7 @@ import com.njxnet.service.tmsp.entity.PhoneMsgDict;
 import com.njxnet.service.tmsp.entity.TmspPhoneMsgDict;
 import com.njxnet.service.tmsp.service.PhoneMsgDictService;
 import com.njxnet.service.tmsp.service.TmspPhoneMsgDictService;
+import com.njxnet.service.tmsp.service.impl.TmspPhoneMsgDictServiceImpl;
 import com.njxnet.service.tmsp.testComponent.wrapper.WrapperMpService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,10 @@ public class TestService {
 
     @Resource
     private TmspPhoneMsgDictService tmspPhoneMsgDictService;
+
+    @Resource
+    private TmspPhoneMsgDictServiceImpl tmspPhoneMsgDictServiceImpl;
+
 
     @Resource
     private WrapperMpService wrapperMpService;
@@ -106,7 +111,10 @@ public class TestService {
         //            此时其实不需要再用编程式事务了
     }
 
-
-
-
+    @DsAno(value = DsEnum.SECOND)
+    public void testMyMethodInMpService() {
+        // 测试自己在mybatisplus service中定义的方法
+        TmspPhoneMsgDict tmspPhoneMsgDict = tmspPhoneMsgDictServiceImpl.queryForTest(4L);
+        System.out.println(tmspPhoneMsgDict);
+    }
 }

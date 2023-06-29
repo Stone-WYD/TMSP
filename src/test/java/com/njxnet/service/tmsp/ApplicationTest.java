@@ -25,6 +25,7 @@ public class ApplicationTest {
     @Resource
     private PhoneMsgDictService phoneMsgDictService;
 
+
     @Resource
     private TestService testService;
 
@@ -74,5 +75,10 @@ public class ApplicationTest {
     public void tesTransactionalWithTwoDataSource() throws InterruptedException {
         // Assertions.assertThrows(ArithmeticException.class,() -> testService.tesTransactionalWithTwoDataSource());
         testService.tesTransactionalWithTwoDataSource();
+    }
+
+    @Test
+    public void testMyMethodInMpService(){
+        testService.testMyMethodInMpService();
     }
 }
