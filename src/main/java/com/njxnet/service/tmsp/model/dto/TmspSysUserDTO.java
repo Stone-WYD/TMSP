@@ -7,8 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.validation.constraints.NotBlank;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -34,7 +33,6 @@ public class TmspSysUserDTO {
     private FreezeIEnum status;
 
     //创建时间
-    private Date createTime;
-
+    private LocalDateTime createTime;
 
 }

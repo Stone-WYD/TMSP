@@ -1,12 +1,10 @@
 package com.njxnet.service.tmsp.entity;
 
-import java.util.Date;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.njxnet.service.tmsp.constants.FreezeIEnum;
-import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * (TmspSysUser)表实体类
@@ -14,7 +12,6 @@ import java.io.Serializable;
  * @author Stone
  * @since 2023-06-26 16:55:36
  */
-@SuppressWarnings("serial")
 public class TmspSysUser extends Model<TmspSysUser> {
     //主键
     private Long id;
@@ -29,9 +26,9 @@ public class TmspSysUser extends Model<TmspSysUser> {
     //状态（0-冻结，1-可用）
     private FreezeIEnum status;
     //创建时间
-    private Date createTime;
+    private LocalDateTime createTime;
     //更新时间
-    private Date updateTime;
+    private LocalDateTime updateTime;
     //删除标记 0-删除 1-未删除
     private Integer delMark;
 
@@ -84,19 +81,19 @@ public class TmspSysUser extends Model<TmspSysUser> {
         this.status = status;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 

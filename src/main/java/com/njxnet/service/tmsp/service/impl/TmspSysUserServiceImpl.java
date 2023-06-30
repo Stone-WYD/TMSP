@@ -25,6 +25,7 @@ import com.njxnet.service.tmsp.utils.CourtUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -146,8 +147,8 @@ public class TmspSysUserServiceImpl extends ServiceImpl<TmspSysUserDao, TmspSysU
     @Override
     public AjaxResult insertUser(TmspSysUserInfo userInfo) {
         TmspSysUser user = BeanUtil.copyProperties(userInfo, TmspSysUser.class);
-        user.setCreateTime(new Date());
-        user.setUpdateTime(new Date());
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdateTime(LocalDateTime.now());
         save(user);
         // 返回结果
         return AjaxResultUtil.getTrueAjaxResult(new AjaxResult<>());
