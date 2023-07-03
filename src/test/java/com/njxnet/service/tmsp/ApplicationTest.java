@@ -1,7 +1,7 @@
 package com.njxnet.service.tmsp;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.njxnet.framework.common.model.AjaxResult;
+import com.njxnet.service.tmsp.common.AjaxResult;
 import com.njxnet.service.tmsp.config.datasource.context.DsEnum;
 import com.njxnet.service.tmsp.config.datasource.context.DsSelectExecutor;
 import com.njxnet.service.tmsp.entity.PhoneMsgDict;

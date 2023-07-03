@@ -5,8 +5,8 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.njxnet.framework.common.model.AjaxResult;
-import com.njxnet.framework.common.utils.AjaxResultUtil;
+import com.njxnet.service.tmsp.common.AjaxResult;
+import com.njxnet.service.tmsp.common.AjaxResultUtil;
 import com.njxnet.service.tmsp.constants.DelEnum;
 import com.njxnet.service.tmsp.constants.FreezeIEnum;
 import com.njxnet.service.tmsp.dao.TmspSysUserDao;
@@ -22,16 +22,16 @@ import com.njxnet.service.tmsp.service.TmspSysUserService;
 import com.njxnet.service.tmsp.utils.BuildUtils;
 import com.njxnet.service.tmsp.utils.CommonUtil;
 import com.njxnet.service.tmsp.utils.CourtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.njxnet.service.tmsp.exception.ResultStatusCode.LOGIN_ERROR;
+import static com.njxnet.service.tmsp.common.ResultStatusCode.LOGIN_ERROR;
 
 /**
  * (TmspSysUser)表服务实现类
@@ -39,6 +39,7 @@ import static com.njxnet.service.tmsp.exception.ResultStatusCode.LOGIN_ERROR;
  * @author Stone
  * @since 2023-06-26 16:08:25
  */
+@Slf4j
 @Service("tmspSysUserService")
 public class TmspSysUserServiceImpl extends ServiceImpl<TmspSysUserDao, TmspSysUser> implements TmspSysUserService {
 
@@ -53,7 +54,7 @@ public class TmspSysUserServiceImpl extends ServiceImpl<TmspSysUserDao, TmspSysU
         TmspSysUser user = query().eq("user_name", username).eq("password", password).one();
         // 用户名或密码不正确
         if (user == null)
-            return AjaxResultUtil.getFalseAjaxResult(new AjaxResult<>(), LOGIN_ERROR.getName(), LOGIN_ERROR.getCode());
+            return AjaxResultUtil.getBussiseFalseAjaxResult(new AjaxResult<>(), LOGIN_ERROR.getName(), LOGIN_ERROR.getCode());
         LoginVO loginVO = BeanUtil.copyProperties(user, LoginVO.class);
         // 填充法院名
         String courtName = courtUtil.getCourtName(user.getCourtCode());
@@ -150,6 +151,7 @@ public class TmspSysUserServiceImpl extends ServiceImpl<TmspSysUserDao, TmspSysU
         user.setCreateTime(LocalDateTime.now());
         user.setUpdateTime(LocalDateTime.now());
         save(user);
+        log.info("新增用户id为：" + user.getId());
         // 返回结果
         return AjaxResultUtil.getTrueAjaxResult(new AjaxResult<>());
     }

@@ -6,13 +6,11 @@ import com.github.cage.Cage;
 import com.github.cage.IGenerator;
 import com.github.cage.image.ConstantColorGenerator;
 import com.github.cage.image.Painter;
-import com.njxnet.framework.common.exception.BaseException;
-import com.njxnet.framework.common.exception.BaseResultStatusCode;
-import com.njxnet.framework.common.model.AjaxResult;
-import com.njxnet.framework.common.utils.AjaxResultUtil;
-import com.njxnet.framework.common.utils.DESUtil;
+import com.njxnet.service.tmsp.common.AjaxResult;
+import com.njxnet.service.tmsp.common.AjaxResultUtil;
+import com.njxnet.service.tmsp.common.BaseException;
 import com.njxnet.service.tmsp.entity.TmspSysUser;
-import com.njxnet.service.tmsp.exception.ResultStatusCode;
+import com.njxnet.service.tmsp.common.ResultStatusCode;
 import com.njxnet.service.tmsp.model.CaptchaModel;
 import com.njxnet.service.tmsp.model.dto.CaptchaDTO;
 import com.njxnet.service.tmsp.model.query.AdminLoginQuery;
@@ -98,7 +96,7 @@ public class LoginController {
             log.info("请求的验证码为：{}:{}", kapKey, text);
         } catch (IOException e) {
             log.error("获取验证码异常：{}", e.getMessage());
-            AjaxResultUtil.getFalseAjaxResult(ajaxResult, BaseResultStatusCode.ERROR.getName(), BaseResultStatusCode.ERROR.getCode());
+            AjaxResultUtil.getFalseAjaxResult(ajaxResult);
         } finally {
             try {
                 if (outputStream != null) {
@@ -106,13 +104,13 @@ public class LoginController {
                 }
             } catch (IOException e) {
                 log.error("获取验证码异常：{}", e.getMessage());
-                AjaxResultUtil.getFalseAjaxResult(ajaxResult, BaseResultStatusCode.ERROR.getName(), BaseResultStatusCode.ERROR.getCode());
+                AjaxResultUtil.getFalseAjaxResult(ajaxResult);
             }
         }
         return ajaxResult;
     }
 
-    @ApiOperation(value = "字符串加密", notes = "字符串加密", hidden = true)
+/*    @ApiOperation(value = "字符串加密", notes = "字符串加密", hidden = true)
     @RequestMapping(value = "/getEncryption", method = RequestMethod.POST)
     public AjaxResult<String> getEncryption(String param) {
         String decrypt = DESUtil.encrypt(Constants.secretKey, param);
@@ -120,5 +118,5 @@ public class LoginController {
         AjaxResultUtil.getTrueAjaxResult(ajaxResult);
         ajaxResult.setData(decrypt);
         return ajaxResult;
-    }
+    }*/
 }

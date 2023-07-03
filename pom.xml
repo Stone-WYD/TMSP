@@ -105,6 +105,13 @@
             <version>${hutool.version}</version>
         </dependency>
 
+        <!-- 谷歌工具包 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>21.0</version>
+        </dependency>
+
         <!--生成验证码-->
         <dependency>
             <groupId>com.github.cage</groupId>
@@ -142,11 +149,11 @@
             </exclusions>
         </dependency>
         <!-- 公司common -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.njxnet.framework</groupId>
             <artifactId>common</artifactId>
             <version>${com.njxnet.framework.version}</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <dependencyManagement>

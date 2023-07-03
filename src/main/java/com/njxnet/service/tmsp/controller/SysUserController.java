@@ -1,7 +1,7 @@
 package com.njxnet.service.tmsp.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.njxnet.framework.common.model.AjaxResult;
+import com.njxnet.service.tmsp.common.AjaxResult;
 import com.njxnet.service.tmsp.model.dto.TmspSysUserDTO;
 import com.njxnet.service.tmsp.model.info.TmspSysUserInfo;
 import com.njxnet.service.tmsp.model.query.SysUserQuery;
@@ -10,10 +10,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @RequestMapping(value = "/users/manage")
 @RestController

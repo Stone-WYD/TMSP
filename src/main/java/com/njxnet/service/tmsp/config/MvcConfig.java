@@ -1,8 +1,5 @@
 package com.njxnet.service.tmsp.config;
 
-import cn.dev33.satoken.interceptor.SaInterceptor;
-import cn.dev33.satoken.stp.StpUtil;
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -33,7 +30,7 @@ public class MvcConfig implements WebMvcConfigurer{
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // 开启注解
+        /*// 开启注解
          registry.addInterceptor(new SaInterceptor()).addPathPatterns("/**");
         // 注册 Sa-Token 拦截器，校验规则为 StpUtil.checkLogin() 登录校验。
         registry.addInterceptor(new SaInterceptor(handle -> StpUtil.checkLogin()))
@@ -43,7 +40,7 @@ public class MvcConfig implements WebMvcConfigurer{
                         "/webjars/**",
                         "/swagger-resources",
                         "/favicon.ico",
-                        "/doc.html");
+                        "/doc.html");*/
     }
 
     @Override

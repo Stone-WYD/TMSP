@@ -2,20 +2,13 @@ package com.njxnet.service.tmsp.config;
 
 import cn.dev33.satoken.exception.DisableServiceException;
 import cn.dev33.satoken.exception.NotLoginException;
-import com.njxnet.framework.common.exception.BaseResultStatusCode;
-import com.njxnet.framework.common.model.AjaxResult;
-import com.njxnet.framework.common.utils.AjaxResultUtil;
+import com.njxnet.service.tmsp.common.AjaxResult;
+import com.njxnet.service.tmsp.common.AjaxResultUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.njxnet.service.tmsp.exception.ResultStatusCode.LOGIN_FREEZE;
+import static com.njxnet.service.tmsp.common.ResultStatusCode.LOGIN_FREEZE;
 
 
 @RestControllerAdvice
@@ -57,7 +50,7 @@ public class GlobalExceptionHandler {
         else {
             message = "当前会话未登录";
         }
-        AjaxResult result = AjaxResultUtil.getDefaultFalseAjaxResult(new AjaxResult<>());
+        AjaxResult result = AjaxResultUtil.getFalseAjaxResult(new AjaxResult<>());
         result.setMessage(message);
         return result;
     }

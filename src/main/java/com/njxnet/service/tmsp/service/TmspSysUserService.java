@@ -2,7 +2,7 @@ package com.njxnet.service.tmsp.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.njxnet.framework.common.model.AjaxResult;
+import com.njxnet.service.tmsp.common.AjaxResult;
 import com.njxnet.service.tmsp.entity.TmspSysUser;
 import com.njxnet.service.tmsp.model.dto.TmspSysUserDTO;
 import com.njxnet.service.tmsp.model.info.TmspSysUserInfo;

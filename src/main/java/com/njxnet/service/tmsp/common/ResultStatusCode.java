@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.exception;
+package com.njxnet.service.tmsp.common;
 
 /**
  * 返回状态码枚举
