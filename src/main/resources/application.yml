@@ -9,8 +9,8 @@ spring:
 #      tmsp:
 #        # 短信发送平台数据源
 #        url: jdbc:mysql://192.168.30.43:3306/tmsp?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
-#        username: ssfw
-#        password: njxnet1234
+#        username: ssfw  root
+#        password: njxnet1234  123456
 #      interface:
 #        # 接口平台数据源
 #        url: jdbc:mysql://192.168.30.42:3306/interface_platform?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
@@ -19,8 +19,8 @@ spring:
 #  当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
   datasource:
     url: jdbc:mysql://localhost:3306/tmsp?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
-    username: root
-    password: 123456
+    username: ssfw
+    password: njxnet1234
     driverClassName: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
