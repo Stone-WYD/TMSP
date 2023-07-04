@@ -1,6 +1,6 @@
 server:
   # 端口
-  port: 8080
+  port: 8081
 
 spring:
 #  dynamic: #动态数据源
@@ -60,3 +60,6 @@ sa-token:
 knife4j:
   setting:
     language: zh_cn
+
+config:
+  baseUrl: http://192.168.30.43:8080

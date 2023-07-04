@@ -29,28 +29,33 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis.version}</version>
         </dependency>
+
         <!-- mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mp.version}</version>
         </dependency>
+
         <!-- satoken登录鉴权 -->
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-spring-boot-starter</artifactId>
             <version>${satoken.version}</version>
         </dependency>
+
         <!-- 可能需要war包启动 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -67,31 +72,37 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope><!--由JDK或者容器提供-->
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+
         <!-- 数据校验框架 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+
         <!-- 日志框架  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
+
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
         <!-- 配置文件加密 -->
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>${ulisesbocchio.version}</version>
         </dependency>
+
         <!-- aop -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -119,6 +130,12 @@
             <version>${cage.version}</version>
         </dependency>
 
+        <!-- WebClient的使用 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
         <!-- Knife4j：swagger增强版 -->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
@@ -130,6 +147,7 @@
             <artifactId>spring-plugin-core</artifactId>
             <version>2.0.0.RELEASE</version>
         </dependency>
+
         <!-- 单元测试框架 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -148,6 +166,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <!-- 公司common -->
         <!--<dependency>
             <groupId>com.njxnet.framework</groupId>

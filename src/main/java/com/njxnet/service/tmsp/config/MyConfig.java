@@ -2,9 +2,16 @@ package com.njxnet.service.tmsp.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.njxnet.service.tmsp.utils.MyThreadPoolExecutor;
+import io.netty.channel.ChannelOption;
+import io.netty.handler.timeout.ReadTimeoutHandler;
+import io.netty.handler.timeout.WriteTimeoutHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.netty.http.client.HttpClient;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadFactory;
@@ -14,6 +21,9 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @Slf4j
 public class MyConfig {
+
+    @Value("${config.baseUrl}")
+    private String baseUrl;
 
     @Bean
     public ThreadPoolExecutor myThreadPoolExecutor(){
@@ -31,5 +41,20 @@ public class MyConfig {
                 threadFactory,
                 new ThreadPoolExecutor.AbortPolicy());
         return myThreadPoolExecutor;
+    }
+
+
+    @Bean
+    public WebClient myWebClient(){
+        // 配置超时时间，读写超时时间
+        HttpClient httpClient = HttpClient.create()
+                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10000)
+                .doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler(10))
+                        .addHandlerLast(new WriteTimeoutHandler(10)));
+
+        // 创建 webClient
+        return WebClient.builder().clientConnector(new ReactorClientHttpConnector(httpClient))
+                .baseUrl(baseUrl)
+                .build();
     }
 }
