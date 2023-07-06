@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.5.6</spring-boot.version>
-        <druid.version>1.1.9</druid.version>
+        <druid.version>1.1.20</druid.version>
         <mybatis.version>2.0.1</mybatis.version>
         <satoken.version>1.34.0</satoken.version>
         <mp.version>3.4.3</mp.version>

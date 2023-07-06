@@ -2,10 +2,13 @@ package com.njxnet.service.tmsp.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.njxnet.service.tmsp.common.AjaxResult;
+import com.njxnet.service.tmsp.common.AjaxResultUtil;
 import com.njxnet.service.tmsp.model.dto.TmspSysUserDTO;
 import com.njxnet.service.tmsp.model.info.TmspSysUserInfo;
 import com.njxnet.service.tmsp.model.query.SysUserQuery;
+import com.njxnet.service.tmsp.service.TmspSysUserNewService;
 import com.njxnet.service.tmsp.service.TmspSysUserService;
+import com.njxnet.service.tmsp.service.impl.TmspSysUserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -66,5 +69,15 @@ public class SysUserController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public AjaxResult deleteUser(@RequestBody @Validated(value = TmspSysUserInfo.update.class) TmspSysUserInfo userInfo) {
         return sysUserService.deleteUser(userInfo.getId());
+    }
+
+    // 新增的用户设计
+    @ApiOperation(value = "新增的设计", notes = "新增的设计，验证设计模式")
+    @RequestMapping(value = "/new/design", method = RequestMethod.POST)
+    public AjaxResult newDesign(String test) {
+        TmspSysUserNewService sysUserNewService = sysUserService instanceof TmspSysUserNewService ? ((TmspSysUserNewService) sysUserService) : null;
+        if (sysUserNewService == null) return AjaxResultUtil.getBussiseFalseAjaxResult(new AjaxResult<>(),
+                "这是测试的新增设计，当前情况不应该被调用", 40004);
+        return sysUserNewService.newDesign(test);
     }
 }
