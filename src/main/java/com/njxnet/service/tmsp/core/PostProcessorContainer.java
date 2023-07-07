@@ -1,16 +1,14 @@
 package com.njxnet.service.tmsp.core;
 
 import cn.hutool.core.collection.CollectionUtil;
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PostProcessorContainer<T> implements ApplicationContextAware {
+public class PostProcessorContainer<T>{
 
     private Class<BasePostProcessor> monitorPostProcessorClass;
 
@@ -20,9 +18,10 @@ public class PostProcessorContainer<T> implements ApplicationContextAware {
     private PostProcessorContainer() {
     }
 
-    public static <T> PostProcessorContainer getInstance(Class<T> monitorPostProcessorClass){
+    public static <T> PostProcessorContainer getInstance(Class<T> monitorPostProcessorClass, ApplicationContext applicationContext){
         PostProcessorContainer postProcessorContainer = new PostProcessorContainer();
         postProcessorContainer.monitorPostProcessorClass = monitorPostProcessorClass;
+        postProcessorContainer.applicationContext = applicationContext;
         // 使用者无法 new 对象，只能通过该方法获取实例，给方法扩展留空间
         return postProcessorContainer;
     }
@@ -50,7 +49,7 @@ public class PostProcessorContainer<T> implements ApplicationContextAware {
         if (CollectionUtil.isEmpty(postProcessors)) return ;
 
         // 优先级越高，执行时越靠近核心
-        Collections.sort(postProcessors, Comparator.comparing((BasePostProcessor o) -> Integer.valueOf(o.getPriprity())));
+        Collections.sort(postProcessors, Comparator.comparing((BasePostProcessor o) -> Integer.valueOf(o.getPriprity())).reversed());
 
         for (BasePostProcessor postProcessor : postProcessors) {
             // 如果支持处理，才会处理
@@ -58,10 +57,5 @@ public class PostProcessorContainer<T> implements ApplicationContextAware {
                 postProcessor.handleAfter(postContext);
             }
         }
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
     }
 }

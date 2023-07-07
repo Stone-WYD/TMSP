@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
 @RequestMapping("/message")
 public class MessageController {
 
+    @Resource
     private MessageSendService messageSendService;
 
     @PostMapping("/send")

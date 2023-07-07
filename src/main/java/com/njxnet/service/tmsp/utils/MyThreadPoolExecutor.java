@@ -16,6 +16,11 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
 
     @Override
     protected void afterExecute(Runnable r, Throwable t) {
-        log.error("MyThreadPoolExecutor occur error", t);
+        FutureTask futureTask = (FutureTask) r;
+        try {
+            futureTask.get();
+        } catch (Exception e) {
+            log.error("MyThreadPoolExecutor occur error:{}", e.getLocalizedMessage());
+        }
     }
 }

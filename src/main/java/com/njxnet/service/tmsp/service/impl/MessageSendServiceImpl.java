@@ -10,6 +10,9 @@ import com.njxnet.service.tmsp.core.send.SendMessagePostProcessor;
 import com.njxnet.service.tmsp.model.dto.TmspPhoneSendDTO;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import com.njxnet.service.tmsp.service.MessageSendService;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,19 +21,20 @@ import java.util.concurrent.ThreadPoolExecutor;
 import static com.njxnet.service.tmsp.common.ResultStatusCode.NO_OUTHANDLER;
 
 @Service
-public class MessageSendServiceImpl implements MessageSendService {
+public class MessageSendServiceImpl implements MessageSendService, ApplicationContextAware {
 
     @Resource
     private ThreadPoolExecutor poolExecutor;
 
+    private ApplicationContext applicationContext;
+
     @Override
     public AjaxResult messageSend(TmspPhoneSendDTO dto) {
-        PostProcessorContainer postProcessorContainer = PostProcessorContainer.getInstance(SendMessagePostProcessor.class);
-        PostProcessorContainer outPostProcessorContainer = PostProcessorContainer.getInstance(SendMessageOuterPostProcessor.class);
+        PostProcessorContainer outPostProcessorContainer = PostProcessorContainer.getInstance(SendMessageOuterPostProcessor.class, applicationContext);
+        PostProcessorContainer postProcessorContainer = PostProcessorContainer.getInstance(SendMessagePostProcessor.class, applicationContext);
 
         SendInfo sendInfo = BeanUtil.copyProperties(dto, SendInfo.class);
         PostContext<SendInfo> context = new PostContext(sendInfo);
-
 
         // 1.发送前的操作（黑名单校验、数据库等）
         if (outPostProcessorContainer.handleBefore(context)) {
@@ -50,6 +54,12 @@ public class MessageSendServiceImpl implements MessageSendService {
         // 3.发送后的操作（数据库）
         outPostProcessorContainer.handleAfter(context);
 
+        // 4.返回结果
         return AjaxResultUtil.getTrueAjaxResult(new AjaxResult<>());
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }

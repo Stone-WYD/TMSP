@@ -1,64 +1,47 @@
-package com.njxnet.service.tmsp.core.send.impl;
+package com.njxnet.service.tmsp.core.send.impl.group;
 
 import cn.hutool.core.util.StrUtil;
 import com.njxnet.service.tmsp.common.AjaxResult;
 import com.njxnet.service.tmsp.common.ResultStatusCode;
-import com.njxnet.service.tmsp.constants.MessageSendStatusEnum;
 import com.njxnet.service.tmsp.constants.SendEnum;
 import com.njxnet.service.tmsp.core.PostContext;
 import com.njxnet.service.tmsp.core.send.SendMessagePostProcessor;
 import com.njxnet.service.tmsp.entity.MessagesGroupSend;
-import com.njxnet.service.tmsp.entity.MessagesSingleSend;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import com.njxnet.service.tmsp.service.MessagesGroupSendService;
-import com.njxnet.service.tmsp.service.MessagesSingleSendService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.*;
-
-import static com.njxnet.service.tmsp.common.ResultStatusCode.SUCCESS;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Component
 @Slf4j
-public class SendMessageAnalysisResultPostProcessor implements SendMessagePostProcessor {
-
-
-    @Resource
-    private MessagesSingleSendService singleSendService;
+public class SendGroupMessageAnalysisResultPostProcessor implements SendMessagePostProcessor {
 
     @Resource
     private MessagesGroupSendService groupSendService;
 
     @Override
+    public boolean support(PostContext<SendInfo> postContext) {
+        SendInfo sendInfo = postContext.getT();
+        return SendEnum.GROUP.getType().equals(sendInfo.getSendWay());
+    }
+
+    @Override
     public void handleAfter(PostContext<SendInfo> postContext) {
         // 分析结果
         SendInfo sendInfo = postContext.getT();
-        if (SendEnum.SINGLE.getType().equals(sendInfo.getSendWay())){
-            // 更新单条发送记录
-            MessagesSingleSend updateStatus = new MessagesSingleSend();
-            updateStatus.setId(sendInfo.getSingleId());
-            // 解析结果
-            AjaxResult ajaxResult = sendInfo.getResult();
-            if (ajaxResult.getCode() == SUCCESS.getCode()){
-                updateStatus.setStatus(MessageSendStatusEnum.SUCCESS);
-            } else updateStatus.setStatus(MessageSendStatusEnum.FAIL);
-            log.info("调用接口平台短信接口返回结果message:{}, code:{}, data:{}",
-                    ajaxResult.getMessage(), ajaxResult.getCode(), ajaxResult.getData());
-            // 2.3.更新数据库记录
-            updateStatus.setFinishTime(new Date());
-            singleSendService.updateById(updateStatus);
-        }
-        if (SendEnum.GROUP.getType().equals(sendInfo.getSendWay())){
-            Map<String, AjaxResult> resultMap = sendInfo.getResultMap();
-            // 解析结果
-            MessagesGroupSend resultRecord = analysisResultEntity(sendInfo.getMobileList(), resultMap);
-            resultRecord.setId(sendInfo.getGroupId());
-            resultRecord.setFinishTime(new Date());
-            // 3.3.更新记录表
-            groupSendService.updateById(resultRecord);
-        }
+        Map<String, AjaxResult> resultMap = sendInfo.getResultMap();
+        // 解析结果
+        MessagesGroupSend resultRecord = analysisResultEntity(sendInfo.getMobileList(), resultMap);
+        resultRecord.setId(sendInfo.getGroupId());
+        resultRecord.setFinishTime(new Date());
+        // 3.3.更新记录表
+        groupSendService.updateById(resultRecord);
     }
 
     private MessagesGroupSend analysisResultEntity(List<String> mobileList, Map<String, AjaxResult> resultMap) {

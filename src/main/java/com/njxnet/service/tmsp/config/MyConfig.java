@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class MyConfig {
 
-    @Value("${config.baseUrl}")
+    @Value("${config.url.base}")
     private String baseUrl;
 
     @Bean
