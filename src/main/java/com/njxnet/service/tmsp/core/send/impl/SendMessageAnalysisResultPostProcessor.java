@@ -31,8 +31,6 @@ public class SendMessageAnalysisResultPostProcessor implements SendMessagePostPr
     @Resource
     private MessagesGroupSendService groupSendService;
 
-
-
     @Override
     public void handleAfter(PostContext<SendInfo> postContext) {
         // 分析结果

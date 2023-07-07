@@ -68,7 +68,14 @@ public class SendMessageCorePostProcessor implements SendMessagePostProcessor {
 
     @Override
     public void handleAfter(PostContext<SendInfo> postContext) {
+        SendInfo sendInfo = postContext.getT();
         // 调用接口
+        if (SendEnum.SINGLE.getType().equals(sendInfo.getSendWay())){
+
+        }
+        if (SendEnum.GROUP.getType().equals(sendInfo.getSendWay())){
+
+        }
         SendMessagePostProcessor.super.handleAfter(postContext);
     }
 
