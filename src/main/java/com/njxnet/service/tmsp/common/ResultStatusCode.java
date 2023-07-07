@@ -16,14 +16,13 @@ public enum ResultStatusCode {
     LOGIN_FREEZE(2004,"账号已被冻结"),
     MISSING_PARAM(2005, "参数缺失"),
     USER_EXIST(2006, "本法院或其他法院已存在该用户名"),
-    AUTH_EXIST(2008,"该角色已存在"),
-    DATA_EXIST(2009,"该数据项已存在"),
-    COMPANY_EXIST(2010,"该公司已存在"),
-    USED_DATA_ITEM(2011,"存在被使用数据项,请检查"),
-    PERSON_EXIST(2012,"该人员已存在"),
-    USED_MODEL(2013,"该模型正在使用,无法进行操作"),
-    USED_TARGET(2014,"该指标已经被使用,无法进行操作"),
-    TARGET_EXIST(2015,"该指标已经存在"),
+
+    NO_OUTHANDLER(3001, "发送短信前没有校验操作"),
+    PHONES_EMPTY_ERROR(4001, "没有可使用的手机号，可能原因：手机号存在于黑名单中"),
+    BLACKLIST_REPEAT(4002, "该号码已添加至黑名单"),
+
+
+    ;
 
 
     ;

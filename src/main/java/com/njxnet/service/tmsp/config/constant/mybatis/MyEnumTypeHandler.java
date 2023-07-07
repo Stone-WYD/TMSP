@@ -2,6 +2,7 @@ package com.njxnet.service.tmsp.config.constant.mybatis;
 
 import com.njxnet.service.tmsp.constants.FreezeIEnum;
 import com.njxnet.service.tmsp.constants.IEnum;
+import com.njxnet.service.tmsp.constants.MessageSendStatusEnum;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
@@ -11,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@MappedTypes(value = {FreezeIEnum.class})
+@MappedTypes(value = {FreezeIEnum.class, MessageSendStatusEnum.class})
 public class MyEnumTypeHandler extends BaseTypeHandler<IEnum> {
     private final Class<IEnum> type;
     private final IEnum[] enums;
