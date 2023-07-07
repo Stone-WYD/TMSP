@@ -3,6 +3,7 @@ package com.njxnet.service.tmsp.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.njxnet.service.tmsp.common.AjaxResult;
@@ -58,7 +59,7 @@ public class TmspSysUserServiceImpl extends ServiceImpl<TmspSysUserDao, TmspSysU
         LoginVO loginVO = BeanUtil.copyProperties(user, LoginVO.class);
         // 填充法院名
         String courtName = courtUtil.getCourtName(user.getCourtCode());
-        if (CommonUtil.isNotEmpty(courtName)) loginVO.setCourtName(courtName);
+        if (StrUtil.isNotBlank(courtName)) loginVO.setCourtName(courtName);
         // 获取用户权限列表 全部取出
         List<TmspSysResource> resources = tmspSysResourceService.query().list();
         List<ResourceNodeInfo> list = resources.stream()
@@ -115,7 +116,7 @@ public class TmspSysUserServiceImpl extends ServiceImpl<TmspSysUserDao, TmspSysU
         String username = query.getUsername();
         Page<TmspSysUser> page = page(new Page<>(query.getPage(), query.getSize()),
                 query().eq("del_mark", DelEnum.EXIST.getCode())
-                        .like(CommonUtil.isNotEmpty(username), "user_name", "%" + username + "%")
+                        .like(StrUtil.isNotBlank(username), "user_name", "%" + username + "%")
                         .getWrapper());
         // 为空返回结果
         if (CollectionUtil.isEmpty(page.getRecords())) {
@@ -136,9 +137,9 @@ public class TmspSysUserServiceImpl extends ServiceImpl<TmspSysUserDao, TmspSysU
 
     @Override
     public AjaxResult updateUser(TmspSysUserInfo userInfo) {
-        update().set(CommonUtil.isNotEmpty(userInfo.getUserName()), "user_name", userInfo.getUserName())
-                .set(CommonUtil.isNotEmpty(userInfo.getPassword()), "password", userInfo.getPassword())
-                .set(CommonUtil.isNotEmpty(userInfo.getCourtCode()), "court_code", userInfo.getCourtCode())
+        update().set(StrUtil.isNotBlank(userInfo.getUserName()), "user_name", userInfo.getUserName())
+                .set(StrUtil.isNotBlank(userInfo.getPassword()), "password", userInfo.getPassword())
+                .set(StrUtil.isNotBlank(userInfo.getCourtCode()), "court_code", userInfo.getCourtCode())
                 .set("update_time", new Date())
                 .eq("id", userInfo.getId())
                 .update();

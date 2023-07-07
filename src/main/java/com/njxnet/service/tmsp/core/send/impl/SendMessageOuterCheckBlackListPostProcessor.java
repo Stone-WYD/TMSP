@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.core.send.impl.single;
+package com.njxnet.service.tmsp.core.send.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;

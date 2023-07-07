@@ -47,4 +47,6 @@ public class SendInfo {
 
     private Long singleId;
 
+    private Long groupId;
+
 }
