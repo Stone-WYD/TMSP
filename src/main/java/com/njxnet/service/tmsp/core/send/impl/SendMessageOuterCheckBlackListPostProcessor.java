@@ -40,7 +40,7 @@ public class SendMessageOuterCheckBlackListPostProcessor implements SendMessageO
         }
         if (StrUtil.isNotBlank(sendInfo.getMobiles())){
             // 有 mobiles，说明是群发
-            String mobiles = removeBlackListPhoneReturnString(sendInfo.getMobiles());
+            String mobiles = removeBlackListPhoneReturnString(sendInfo.getMobiles(), sendInfo);
             sendInfo.setMobiles(mobiles);
         }
         return false;
@@ -50,7 +50,7 @@ public class SendMessageOuterCheckBlackListPostProcessor implements SendMessageO
         return blackListService.query().eq("phone_number", phone).one() != null;
     }
 
-    private String removeBlackListPhoneReturnString(String mobiles) {
+    private String removeBlackListPhoneReturnString(String mobiles, SendInfo sendInfo) {
         List<String> resultList = new ArrayList<>();
         List<String> mobileList = Arrays.stream(mobiles.split(",")).map(String::trim).collect(Collectors.toList());
         if (CollectionUtil.isEmpty(mobileList)) throw new BaseException(PHONES_EMPTY_ERROR.getCode(), PHONES_EMPTY_ERROR.getName());
@@ -63,6 +63,10 @@ public class SendMessageOuterCheckBlackListPostProcessor implements SendMessageO
         if (resultList.size() == 0){
             throw new BaseException(PHONES_EMPTY_ERROR.getCode(), PHONES_EMPTY_ERROR.getName());
         }
+
+        // 手机号list存入context对象中
+        sendInfo.setMobileList(resultList);
+
         if (resultList.size() == 1){
             return resultList.get(0);
         }

@@ -1,9 +1,13 @@
 package com.njxnet.service.tmsp.model.info;
 
+import com.njxnet.service.tmsp.common.AjaxResult;
+import com.njxnet.service.tmsp.model.dto.PhoneSendMsgDTO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.Map;
 
 @Data
 public class SendInfo {
@@ -34,6 +38,8 @@ public class SendInfo {
     @ApiModelProperty(notes = "群发手机号，群发接口不能为空", name = "mobiles")
     private String mobiles;
 
+    private List<String> mobileList;
+
     @ApiModelProperty(notes = "短信发送类型 1--云片平台发送，2--创蓝平台", name = "sendType")
     private String sendType;
 
@@ -49,4 +55,11 @@ public class SendInfo {
 
     private Long groupId;
 
+    private List<PhoneSendMsgDTO> phoneSendMsgDTOList;
+
+    private PhoneSendMsgDTO phoneSendMsgDTO;
+
+    private Map<String, AjaxResult> resultMap;
+
+    private AjaxResult result;
 }

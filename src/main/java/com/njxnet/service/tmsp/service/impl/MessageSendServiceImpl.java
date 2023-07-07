@@ -3,7 +3,6 @@ package com.njxnet.service.tmsp.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.njxnet.service.tmsp.common.AjaxResult;
 import com.njxnet.service.tmsp.common.AjaxResultUtil;
-import com.njxnet.service.tmsp.common.ResultStatusCode;
 import com.njxnet.service.tmsp.core.PostContext;
 import com.njxnet.service.tmsp.core.PostProcessorContainer;
 import com.njxnet.service.tmsp.core.send.SendMessageOuterPostProcessor;
@@ -41,10 +40,10 @@ public class MessageSendServiceImpl implements MessageSendService {
 
         // 2.异步操作
         poolExecutor.submit(() -> {
-            // 发送短信前的操作
+            // 发送短信前的操作 发送短信
             postProcessorContainer.handleBefore(context);
-            // 实际发送动作已经包含在上下两步中
-            // 发送短信后的操作
+            // 实际发送动作已经包含在上下两步中，实际发送动作，应该是最接近核心的，优先级最高
+            // 发送短信后的操作 统计结果
             postProcessorContainer.handleAfter(context);
         });
 
