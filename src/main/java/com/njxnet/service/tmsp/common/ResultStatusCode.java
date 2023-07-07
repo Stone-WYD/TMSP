@@ -22,8 +22,6 @@ public enum ResultStatusCode {
     BLACKLIST_REPEAT(4002, "该号码已添加至黑名单"),
 
     SEND_DTO_EMPTY_ERROR(5001, "发送短信失败，失败原因：没有传参"),
-
-
     ;
 
 

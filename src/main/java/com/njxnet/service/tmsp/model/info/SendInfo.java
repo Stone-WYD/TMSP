@@ -49,17 +49,12 @@ public class SendInfo {
     @ApiModelProperty(notes = "发送方式，1.单发，2.群发",name = "sendWay")
     private String sendWay;
 
-    private boolean canSend = true;
-
     private Long singleId;
 
     private Long groupId;
 
     private List<PhoneSendMsgDTO> phoneSendMsgDTOList;
 
-    private PhoneSendMsgDTO phoneSendMsgDTO;
-
     private Map<String, AjaxResult> resultMap;
 
-    private AjaxResult result;
 }

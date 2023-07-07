@@ -46,6 +46,12 @@ public class SendMessageOuterCheckBlackListPostProcessor implements SendMessageO
         return false;
     }
 
+    @Override
+    public int getPriprity() {
+        // 在最外面被执行，应该是先执行的
+        return -1;
+    }
+
     private boolean isPhoneInBlackList(String phone){
         return blackListService.query().eq("phone_number", phone).one() != null;
     }

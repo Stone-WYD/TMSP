@@ -8,7 +8,6 @@ import org.springframework.context.ApplicationContextAware;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class PostProcessorContainer<T> implements ApplicationContextAware {
@@ -37,7 +36,10 @@ public class PostProcessorContainer<T> implements ApplicationContextAware {
         Collections.sort(postProcessors, Comparator.comparing((BasePostProcessor o) -> Integer.valueOf(o.getPriprity())));
 
         for (BasePostProcessor postProcessor : postProcessors) {
-            postProcessor.handleBefore(postContext);
+            // 如果支持处理，才会处理
+            if (postProcessor.support(postContext)) {
+                postProcessor.handleBefore(postContext);
+            }
         }
         return false; // 有操作则返回false
     }
@@ -51,7 +53,10 @@ public class PostProcessorContainer<T> implements ApplicationContextAware {
         Collections.sort(postProcessors, Comparator.comparing((BasePostProcessor o) -> Integer.valueOf(o.getPriprity())));
 
         for (BasePostProcessor postProcessor : postProcessors) {
-            postProcessor.handleAfter(postContext);
+            // 如果支持处理，才会处理
+            if (postProcessor.support(postContext)) {
+                postProcessor.handleAfter(postContext);
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.core.send.impl.single;
+package com.njxnet.service.tmsp.core.send.impl.single.outer;
 
 import com.njxnet.service.tmsp.constants.MessageSendStatusEnum;
 import com.njxnet.service.tmsp.constants.SendEnum;
@@ -19,14 +19,19 @@ public class SendSingleMessageOuterDataInsertPostProcessor implements SendMessag
     private MessagesSingleSendService messagesSingleSendService;
 
     @Override
+    public boolean support(PostContext<SendInfo> postContext) {
+        // 单发短信时才支持
+        SendInfo sendInfo = postContext.getT();
+        return SendEnum.SINGLE.getType().equals(sendInfo.getSendWay());
+    }
+
+    @Override
     public boolean handleBefore(PostContext<SendInfo> postContext) {
         // 插入一条记录
         SendInfo sendInfo = postContext.getT();
-        if (SendEnum.SINGLE.getType().equals(sendInfo.getSendWay())) {
-            MessagesSingleSend singleSend = createSingleSend(sendInfo, new MessagesSingleSend());
-            messagesSingleSendService.save(singleSend);
-            sendInfo.setSingleId(singleSend.getId());
-        }
+        MessagesSingleSend singleSend = createSingleSend(sendInfo, new MessagesSingleSend());
+        messagesSingleSendService.save(singleSend);
+        sendInfo.setSingleId(singleSend.getId());
         return false;
     }
 

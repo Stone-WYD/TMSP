@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.core.send.impl.group;
+package com.njxnet.service.tmsp.core.send.impl.group.outer;
 
 import com.njxnet.service.tmsp.constants.SendEnum;
 import com.njxnet.service.tmsp.core.PostContext;
@@ -18,14 +18,19 @@ public class SendGroupMessageOuterDataInsertPostProcessor implements SendMessage
     private MessagesGroupSendService groupSendService;
 
     @Override
+    public boolean support(PostContext<SendInfo> postContext) {
+        // 群发短信时才支持
+        SendInfo sendInfo = postContext.getT();
+        return SendEnum.GROUP.getType().equals(sendInfo.getSendWay());
+    }
+
+    @Override
     public boolean handleBefore(PostContext<SendInfo> postContext) {
         // 插入一条记录
         SendInfo sendInfo = postContext.getT();
-        if (SendEnum.GROUP.getType().equals(sendInfo.getSendWay())){
-            MessagesGroupSend groupSend = createGroupSend(sendInfo, new MessagesGroupSend());
-            groupSendService.save(groupSend);
-            sendInfo.setGroupId(groupSend.getId());
-        }
+        MessagesGroupSend groupSend = createGroupSend(sendInfo, new MessagesGroupSend());
+        groupSendService.save(groupSend);
+        sendInfo.setGroupId(groupSend.getId());
         return false;
     }
 

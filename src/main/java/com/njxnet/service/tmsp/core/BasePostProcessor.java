@@ -2,6 +2,8 @@ package com.njxnet.service.tmsp.core;
 
 public interface BasePostProcessor <T>{
 
+    default boolean support(PostContext<T> postContext){return true;}
+
     default  boolean handleBefore(PostContext<T> postContext){
         return true;
     }
