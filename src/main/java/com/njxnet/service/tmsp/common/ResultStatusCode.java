@@ -18,8 +18,10 @@ public enum ResultStatusCode {
     USER_EXIST(2006, "本法院或其他法院已存在该用户名"),
 
     NO_OUTHANDLER(3001, "发送短信前没有校验操作"),
-    PHONES_EMPTY_ERROR(4001, "没有可使用的手机号，可能原因：手机号存在于黑名单中"),
+    PHONES_EMPTY_ERROR(4001, "没有可使用的手机号，失败原因：手机号存在于黑名单中"),
     BLACKLIST_REPEAT(4002, "该号码已添加至黑名单"),
+
+    SEND_DTO_EMPTY_ERROR(5001, "发送短信失败，失败原因：没有传参"),
 
 
     ;
