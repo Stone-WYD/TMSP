@@ -10,9 +10,6 @@ import com.njxnet.service.tmsp.core.send.SendMessagePostProcessor;
 import com.njxnet.service.tmsp.model.dto.TmspPhoneSendDTO;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import com.njxnet.service.tmsp.service.MessageSendService;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,17 +18,15 @@ import java.util.concurrent.ThreadPoolExecutor;
 import static com.njxnet.service.tmsp.common.ResultStatusCode.NO_OUTHANDLER;
 
 @Service
-public class MessageSendServiceImpl implements MessageSendService, ApplicationContextAware {
+public class MessageSendServiceImpl implements MessageSendService {
 
     @Resource
     private ThreadPoolExecutor poolExecutor;
 
-    private ApplicationContext applicationContext;
-
     @Override
     public AjaxResult messageSend(TmspPhoneSendDTO dto) {
-        PostProcessorContainer outPostProcessorContainer = PostProcessorContainer.getInstance(SendMessageOuterPostProcessor.class, applicationContext);
-        PostProcessorContainer postProcessorContainer = PostProcessorContainer.getInstance(SendMessagePostProcessor.class, applicationContext);
+        PostProcessorContainer outPostProcessorContainer = PostProcessorContainer.getInstance(SendMessageOuterPostProcessor.class);
+        PostProcessorContainer postProcessorContainer = PostProcessorContainer.getInstance(SendMessagePostProcessor.class);
 
         SendInfo sendInfo = BeanUtil.copyProperties(dto, SendInfo.class);
         PostContext<SendInfo> context = new PostContext(sendInfo);
@@ -58,8 +53,4 @@ public class MessageSendServiceImpl implements MessageSendService, ApplicationCo
         return AjaxResultUtil.getTrueAjaxResult(new AjaxResult<>());
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
 }
