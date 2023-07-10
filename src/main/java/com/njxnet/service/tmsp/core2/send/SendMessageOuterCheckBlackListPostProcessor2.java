@@ -4,7 +4,6 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.njxnet.service.tmsp.common.BaseException;
 import com.njxnet.service.tmsp.core.PostContext;
-import com.njxnet.service.tmsp.core.send.SendMessageOuterPostProcessor;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import com.njxnet.service.tmsp.service.BlackListService;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 import static com.njxnet.service.tmsp.common.ResultStatusCode.PHONES_EMPTY_ERROR;
 
 @Component
-public class SendMessageOuterCheckBlackListPostProcessor implements SendMessageOuterPostProcessor2 {
+public class SendMessageOuterCheckBlackListPostProcessor2 implements SendMessageOuterPostProcessor2 {
 
     @Resource
     private BlackListService blackListService;

@@ -25,7 +25,7 @@ import static com.njxnet.service.tmsp.common.ResultStatusCode.NO_OUTHANDLER;
  * @author: Stone
  * @create: 2023-07-10 10:44
  **/
-@Service
+@Service("messageSendServiceImpl2")
 @ConditionalOnProperty(name = "config.core.version", havingValue = "2")
 public class MessageSendServiceImpl2 implements MessageSendService {
 

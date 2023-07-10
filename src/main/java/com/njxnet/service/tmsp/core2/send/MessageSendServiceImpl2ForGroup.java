@@ -32,7 +32,7 @@ import static com.njxnet.service.tmsp.common.ResultStatusCode.SEND_DTO_EMPTY_ERR
  **/
 @Slf4j
 @Service(value = "groupMessageSendService")
-@ConditionalOnBean(value = MessageSendServiceImpl2.class)
+@ConditionalOnBean(name = "messageSendServiceImpl2")
 public class MessageSendServiceImpl2ForGroup extends MessageSendServiceImpl2 {
 
     @Resource

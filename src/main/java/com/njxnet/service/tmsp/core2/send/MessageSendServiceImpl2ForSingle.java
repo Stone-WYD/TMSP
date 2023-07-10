@@ -31,7 +31,7 @@ import static com.njxnet.service.tmsp.common.ResultStatusCode.SUCCESS;
  **/
 @Slf4j
 @Service(value = "singleMessageSendService")
-@ConditionalOnBean(value = MessageSendServiceImpl2.class)
+@ConditionalOnBean(name = "messageSendServiceImpl2")
 public class MessageSendServiceImpl2ForSingle extends MessageSendServiceImpl2 {
 
     @Resource
@@ -99,6 +99,9 @@ public class MessageSendServiceImpl2ForSingle extends MessageSendServiceImpl2 {
         } else updateStatus.setStatus(MessageSendStatusEnum.FAIL);
         log.info("调用接口平台短信接口返回结果message:{}, code:{}, data:{}",
                 ajaxResult.getMessage(), ajaxResult.getCode(), ajaxResult.getData());
+        // 2.3.更新数据库记录
+        updateStatus.setFinishTime(new Date());
+        messagesSingleSendService.updateById(updateStatus);
     }
 
     /**

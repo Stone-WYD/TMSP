@@ -18,9 +18,9 @@ spring:
 #        password:
 #  当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
   datasource:
-    url: jdbc:mysql://localhost:3306/tmsp?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
-    username: root
-    password: 123456
+    url: jdbc:mysql://192.168.30.43:3306/tmsp?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: ssfw
+    password: njxnet1234
     driverClassName: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
@@ -68,7 +68,7 @@ config:
     base: http://192.168.30.43:8080
     send: /phoneMsg/sendMsg
   core:
-    version: 2
+     version: 2
 
 wyd:
   new:
