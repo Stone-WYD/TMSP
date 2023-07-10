@@ -67,6 +67,8 @@ config:
   url:
     base: http://192.168.30.43:8080
     send: /phoneMsg/sendMsg
+  core:
+    version: 2
 
 wyd:
   new:

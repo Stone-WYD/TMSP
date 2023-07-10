@@ -10,6 +10,7 @@ import com.njxnet.service.tmsp.core.send.SendMessagePostProcessor;
 import com.njxnet.service.tmsp.model.dto.TmspPhoneSendDTO;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import com.njxnet.service.tmsp.service.MessageSendService;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import static com.njxnet.service.tmsp.common.ResultStatusCode.NO_OUTHANDLER;
 
+@Primary
 @Service
 public class MessageSendServiceImpl implements MessageSendService {
 
