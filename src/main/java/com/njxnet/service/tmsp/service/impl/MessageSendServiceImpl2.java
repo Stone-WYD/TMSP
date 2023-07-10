@@ -11,7 +11,6 @@ import com.njxnet.service.tmsp.model.dto.TmspPhoneSendDTO;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import com.njxnet.service.tmsp.service.MessageSendService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -43,7 +42,6 @@ public class MessageSendServiceImpl2 implements MessageSendService {
     public AjaxResult messageSend(TmspPhoneSendDTO dto) {
         PostProcessorContainer outPostProcessorContainer = PostProcessorContainer.getInstance(SendMessageOuterPostProcessor2.class);
         PostProcessorContainer postProcessorContainer = PostProcessorContainer.getInstance(SendMessagePostProcessor2.class);
-
         SendInfo sendInfo = BeanUtil.copyProperties(dto, SendInfo.class);
         context = new PostContext(sendInfo);
 
