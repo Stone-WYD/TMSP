@@ -1,14 +1,9 @@
 package com.njxnet.service.tmsp.core2.send;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.njxnet.service.tmsp.common.AjaxResult;
-import com.njxnet.service.tmsp.common.BaseException;
 import com.njxnet.service.tmsp.common.ResultStatusCode;
-import com.njxnet.service.tmsp.core.send.SendMessageWay;
 import com.njxnet.service.tmsp.entity.MessagesGroupSend;
-import com.njxnet.service.tmsp.model.dto.PhoneSendMsgDTO;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import com.njxnet.service.tmsp.service.MessagesGroupSendService;
 import com.njxnet.service.tmsp.service.impl.MessageSendServiceImpl2;
@@ -21,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import static com.njxnet.service.tmsp.common.ResultStatusCode.SEND_DTO_EMPTY_ERROR;
 
 /**
  * @program: TMSP
@@ -37,9 +30,6 @@ public class MessageSendServiceImpl2ForGroup extends MessageSendServiceImpl2 {
 
     @Resource
     private MessagesGroupSendService groupSendService;
-
-    @Resource
-    private SendMessageWay sendMessageWay;
 
     /**
     * @Description: 新增发送记录
@@ -69,50 +59,6 @@ public class MessageSendServiceImpl2ForGroup extends MessageSendServiceImpl2 {
         messagesGroupSend.setUnknownCount(count);
         messagesGroupSend.setPhonesCount(count);
         return messagesGroupSend;
-    }
-
-    /**
-    * @Description: 短信发送前对传参进行处理
-    * @Author: Stone
-    * @Date: 2023/7/10
-    */
-    protected void paramPostProcessor() {
-        // 参数准备
-        SendInfo sendInfo = context.getT();
-        // 准备参数给调用组件调用
-        // 解析手机号封装接口传参
-        List<String> mobileList = sendInfo.getMobileList();
-        PhoneSendMsgDTO dto = BeanUtil.copyProperties(sendInfo, PhoneSendMsgDTO.class);
-        // 封装传参
-        List<PhoneSendMsgDTO> dtoList = new ArrayList<>(mobileList.size());
-        for (String mobile : mobileList) {
-            // 克隆出只有手机号不同的传参
-            PhoneSendMsgDTO clone;
-            try {
-                clone = (PhoneSendMsgDTO) dto.clone();
-            } catch (CloneNotSupportedException e) {
-                log.info(e.getMessage());
-                throw new BaseException(ResultStatusCode.FAIL.getCode(), ResultStatusCode.FAIL.getName());
-            }
-            clone.setMobile(mobile);
-            dtoList.add(clone);
-        }
-        sendInfo.setPhoneSendMsgDTOList(dtoList);
-    }
-
-    /**
-    * @Description: 发送短信
-    * @Author: Stone
-    * @Date: 2023/7/10
-    */
-    protected void theMessageSend() {
-        SendInfo sendInfo = context.getT();
-        List<PhoneSendMsgDTO> phoneSendMsgDTOList = sendInfo.getPhoneSendMsgDTOList();
-        // 调用接口
-        if (CollectionUtil.isEmpty(phoneSendMsgDTOList)) {
-            throw new BaseException(SEND_DTO_EMPTY_ERROR.getCode(), SEND_DTO_EMPTY_ERROR.getName());
-        }
-        sendMessageWay.sendMessage(sendInfo, phoneSendMsgDTOList);
     }
 
     /**
