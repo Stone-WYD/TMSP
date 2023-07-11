@@ -7,9 +7,9 @@ package com.njxnet.service.tmsp.core3;
  * @create: 2023-07-11 21:33
  **/
 
-public interface Valve {
+public interface Valve<C extends ValveContext> {
 
-    void invoke(ValveContext context);
+    void invoke(C context);
 
     void setNext(Valve valve);
 

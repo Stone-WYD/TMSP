@@ -1,9 +1,9 @@
 package com.njxnet.service.tmsp.core3.pipeline.base.validate.impl;
 
 import cn.hutool.core.util.StrUtil;
-import com.njxnet.service.tmsp.core3.ValveContext;
 import com.njxnet.service.tmsp.core3.pipeline.base.validate.ValidateValve;
 import com.njxnet.service.tmsp.core3.pipeline.base.validate.ValidateValveContext;
+import org.springframework.stereotype.Component;
 
 /**
  * @program: TMSP
@@ -11,20 +11,20 @@ import com.njxnet.service.tmsp.core3.pipeline.base.validate.ValidateValveContext
  * @author: Stone
  * @create: 2023-07-11 22:37
  **/
+@Component
 public class ViolenceValidateValve extends ValidateValve {
 
 
     @Override
-    public void invoke(ValveContext context) {
+    public void invoke(ValidateValveContext context) {
         // 暴力内容检测
-        ValidateValveContext validateValveContext = (ValidateValveContext) context;
-        String content = validateValveContext.getContent();
+        String content = context.getContent();
         if (StrUtil.isNotBlank(content)){
             if (content.contains("woc")) {
-                validateValveContext.setViolence(true);
+                context.setViolence(true);
             }
         }
-        validateValveContext.setViolence(false);
+        context.setViolence(false);
         super.getNext().invoke(context);
     }
 

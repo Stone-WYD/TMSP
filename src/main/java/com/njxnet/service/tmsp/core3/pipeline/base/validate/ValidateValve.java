@@ -1,7 +1,5 @@
 package com.njxnet.service.tmsp.core3.pipeline.base.validate;
 
-import com.njxnet.service.tmsp.core3.Valve;
-import com.njxnet.service.tmsp.core3.ValveContext;
 import com.njxnet.service.tmsp.core3.pipeline.base.BaseValve;
 
 /**
@@ -10,6 +8,6 @@ import com.njxnet.service.tmsp.core3.pipeline.base.BaseValve;
  * @author: Stone
  * @create: 2023-07-11 22:02
  **/
-public abstract class ValidateValve<T extends Valve, C extends ValveContext> extends BaseValve<T, C> {
+public abstract class ValidateValve extends BaseValve<ValidateValve, ValidateValveContext> {
 
 }

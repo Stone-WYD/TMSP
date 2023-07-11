@@ -9,7 +9,7 @@ import com.njxnet.service.tmsp.core3.ValveContext;
  * @author: Stone
  * @create: 2023-07-11 21:51
  **/
-public abstract class BaseValve<T extends Valve, C extends ValveContext> implements Valve {
+public abstract class BaseValve<T extends Valve, C extends ValveContext> implements Valve<C> {
 
     private T nextValve;
 
@@ -22,4 +22,5 @@ public abstract class BaseValve<T extends Valve, C extends ValveContext> impleme
     public Valve getNext() {
         return nextValve;
     }
+
 }

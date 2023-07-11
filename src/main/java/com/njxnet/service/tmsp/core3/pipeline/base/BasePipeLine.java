@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @program: TMSP
- * @description: 管道基类
+ * @description: 管道基类,做一些管道初始化通用步骤的封装
  * @author: Stone
  * @create: 2023-07-11 21:37
  **/

@@ -8,5 +8,10 @@ package com.njxnet.service.tmsp.core3;
  **/
 public interface Pipeline {
 
+    /**
+    * @Description: 启动pipeline
+    * @Author: Stone
+    * @Date: 2023/7/11
+    */
     void invoke(ValveContext context);
 }
