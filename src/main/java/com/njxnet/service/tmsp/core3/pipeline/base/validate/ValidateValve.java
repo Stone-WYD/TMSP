@@ -1,8 +1,8 @@
-package com.njxnet.service.tmsp.core3.pipeline;
+package com.njxnet.service.tmsp.core3.pipeline.base.validate;
 
 import com.njxnet.service.tmsp.core3.Valve;
 import com.njxnet.service.tmsp.core3.ValveContext;
-import com.njxnet.service.tmsp.core3.base.BaseValve;
+import com.njxnet.service.tmsp.core3.pipeline.base.BaseValve;
 
 /**
  * @program: TMSP

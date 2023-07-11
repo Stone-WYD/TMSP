@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.core3.pipeline.impl;
+package com.njxnet.service.tmsp.core3.pipeline;
 
 import com.njxnet.service.tmsp.core.PostContext;
 import com.njxnet.service.tmsp.core2.send.SendMessageOuterPostProcessor2;

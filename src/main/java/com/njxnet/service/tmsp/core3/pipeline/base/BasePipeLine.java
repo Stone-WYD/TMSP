@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.core3.base;
+package com.njxnet.service.tmsp.core3.pipeline.base;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.njxnet.service.tmsp.core3.Pipeline;
