@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.validate;
+package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.notice;
 
 import com.njxnet.service.tmsp.design.core3_pipeline.ValveContext;
 import com.njxnet.service.tmsp.model.info.SendInfo;
@@ -11,9 +11,11 @@ import lombok.Data;
  * @create: 2023-07-11 22:01
  **/
 @Data
-public class ValidateValveContext extends ValveContext<SendInfo> {
+public class NoticeValveContext extends ValveContext<SendInfo> {
 
     private String content;
 
     private boolean isViolence;
+
+    private boolean isNotice;
 }

@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.design.core3_pipeline.pipeline;
+package com.njxnet.service.tmsp.design.core3_pipeline.apply;
 
 import com.njxnet.service.tmsp.design.core1_postprocessor.PostContext;
 import com.njxnet.service.tmsp.design.core2_module.send.SendMessageOuterPostProcessor2;

@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.notice;
+package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.notice;
 
 import com.njxnet.service.tmsp.common.BaseException;
 import com.njxnet.service.tmsp.design.core3_pipeline.ValveContext;

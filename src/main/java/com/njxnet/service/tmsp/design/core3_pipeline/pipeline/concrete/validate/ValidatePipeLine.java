@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.validate;
+package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.validate;
 
 import com.njxnet.service.tmsp.common.BaseException;
 import com.njxnet.service.tmsp.design.core3_pipeline.ValveContext;
@@ -36,7 +36,5 @@ public class ValidatePipeLine extends BasePipeLine<ValidateValve, ValidateValveC
 
         validateValveContext.setContent(sendInfo.getContent());
         super.getFirstValve().invoke(validateValveContext);
-        // 最后将结果设置到 sendInfo 中
-        sendInfo.setValidatePass(validateValveContext.isViolence());
     }
 }

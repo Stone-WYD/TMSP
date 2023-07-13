@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.validate;
+package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.notice;
 
 import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.BaseValve;
 
@@ -8,6 +8,6 @@ import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.BaseValve;
  * @author: Stone
  * @create: 2023-07-11 22:02
  **/
-public abstract class ValidateValve extends BaseValve<ValidateValve, ValidateValveContext> {
+public abstract class NoticeValve extends BaseValve<NoticeValve, NoticeValveContext> {
 
 }

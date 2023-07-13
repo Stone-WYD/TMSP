@@ -32,10 +32,13 @@ public abstract class BasePipeLine<T extends Valve, C extends ValveContext> impl
         // 排序
         Collections.sort(valveList, Comparator.comparing((T o) -> o.getPriprity()));
 
-        // 拼接valve链条
+        // 拼接 valve 链条
         for (int i = 0; i < valveList.size()-1; i++) {
             valveList.get(i).setNext(valveList.get(i+1));
         }
+        // 设置最后一个 valve
+        LastValve<T, C> lastValve = new LastValve<>();
+        valveList.get(valveList.size()-1).setNext(lastValve);
 
         firstValve = valveList.get(0);
 

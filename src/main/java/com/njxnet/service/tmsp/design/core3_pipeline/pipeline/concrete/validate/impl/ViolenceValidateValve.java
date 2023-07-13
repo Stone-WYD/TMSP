@@ -1,8 +1,8 @@
-package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.validate.impl;
+package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.validate.impl;
 
 import cn.hutool.core.util.StrUtil;
-import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.validate.ValidateValve;
-import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.validate.ValidateValveContext;
+import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.validate.ValidateValve;
+import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.validate.ValidateValveContext;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,10 +21,9 @@ public class ViolenceValidateValve extends ValidateValve {
         String content = context.getContent();
         if (StrUtil.isNotBlank(content)){
             if (content.contains("woc")) {
-                context.setViolence(true);
+
             }
         }
-        context.setViolence(false);
         super.getNext().invoke(context);
     }
 

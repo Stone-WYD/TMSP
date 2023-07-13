@@ -1,7 +1,7 @@
-package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.notice.impl;
+package com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.notice.impl;
 
-import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.notice.NoticeValve;
-import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.base.notice.NoticeValveContext;
+import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.notice.NoticeValve;
+import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.notice.NoticeValveContext;
 import org.springframework.stereotype.Component;
 
 /**
