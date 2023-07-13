@@ -22,6 +22,11 @@ public class SendMessageOuterCheckValidatePostProcessor implements SendMessageOu
     @Resource
     private ValidatePipeLineTemplate template;
 
+    /**
+    * @Description: 这些内容也可以放在发送短信之前，用于做一些处理
+    * @Author: Stone
+    * @Date: 2023/7/13
+    */
     @Override
     public void handleAfter(PostContext<SendInfo> postContext) {
         SendInfo sendInfo = postContext.getT();

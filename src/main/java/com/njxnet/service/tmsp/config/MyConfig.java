@@ -5,15 +5,16 @@ import com.njxnet.service.tmsp.design.core3_pipeline.PipeLine;
 import com.njxnet.service.tmsp.design.core3_pipeline.apply.ValidatePipeLineTemplate;
 import com.njxnet.service.tmsp.utils.ApplicationContextUtil;
 import com.njxnet.service.tmsp.utils.MyThreadPoolExecutor;
-import com.ulisesbocchio.jasyptspringboot.annotation.ConditionalOnMissingBean;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -26,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @Slf4j
+@DependsOn("applicationContextUtil")
 public class MyConfig {
 
     @Value("${config.url.base}")
@@ -71,13 +73,13 @@ public class MyConfig {
     }
 
     @Bean
-    @ConditionalOnMissingBean
+    @ConditionalOnMissingBean(ValidatePipeLineTemplate.class)
     public ValidatePipeLineTemplate validatePipeLineTemplate(){
         ValidatePipeLineTemplate template = new ValidatePipeLineTemplate();
 
         // 添加管道
         template.getValidatePipeLineList().add((PipeLine) ApplicationContextUtil.getBeanByName("validatePipeLine"));
-        template.getValidatePipeLineList().add((PipeLine) ApplicationContextUtil.getBeanByName(""));
+        template.getValidatePipeLineList().add((PipeLine) ApplicationContextUtil.getBeanByName("noticePipeLine"));
 
         return template;
     }

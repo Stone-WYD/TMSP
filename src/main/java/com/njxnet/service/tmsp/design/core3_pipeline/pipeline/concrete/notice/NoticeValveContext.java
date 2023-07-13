@@ -12,10 +12,5 @@ import lombok.Data;
  **/
 @Data
 public class NoticeValveContext extends ValveContext<SendInfo> {
-
-    private String content;
-
-    private boolean isViolence;
-
-    private boolean isNotice;
+        // 预留，有需要的时候再加入
 }

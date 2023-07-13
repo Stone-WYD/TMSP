@@ -21,6 +21,7 @@ public class ApplicationContextUtil implements ApplicationContextAware, Environm
 
     private static Environment environment;
 
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         ApplicationContextUtil.applicationContext = applicationContext;

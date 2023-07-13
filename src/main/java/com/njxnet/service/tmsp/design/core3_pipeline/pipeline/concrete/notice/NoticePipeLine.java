@@ -33,9 +33,6 @@ public class NoticePipeLine extends BasePipeLine<NoticeValve, NoticeValveContext
         if (sendInfo == null) {
             throw new BaseException(NO_SENDINFO.getCode(), NO_SENDINFO.getName());
         }
-
-        validateValveContext.setContent(sendInfo.getContent());
-        validateValveContext.setViolence(sendInfo.isValidatePass());
         super.getFirstValve().invoke(validateValveContext);
     }
 }
