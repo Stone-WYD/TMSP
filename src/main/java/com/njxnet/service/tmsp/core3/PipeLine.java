@@ -6,7 +6,7 @@ package com.njxnet.service.tmsp.core3;
  * @author: Stone
  * @create: 2023-07-11 21:19
  **/
-public interface Pipeline {
+public interface PipeLine {
 
     /**
     * @Description: 启动pipeline

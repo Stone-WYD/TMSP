@@ -1,7 +1,7 @@
 package com.njxnet.service.tmsp.core3.pipeline.base;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.njxnet.service.tmsp.core3.Pipeline;
+import com.njxnet.service.tmsp.core3.PipeLine;
 import com.njxnet.service.tmsp.core3.Valve;
 import com.njxnet.service.tmsp.core3.ValveContext;
 import com.njxnet.service.tmsp.utils.ApplicationContextUtil;
@@ -18,7 +18,7 @@ import java.util.List;
  * @create: 2023-07-11 21:37
  **/
 @Data
-public abstract class BasePipeLine<T extends Valve, C extends ValveContext> implements Pipeline {
+public abstract class BasePipeLine<T extends Valve, C extends ValveContext> implements PipeLine {
 
     private T firstValve;
 

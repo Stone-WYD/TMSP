@@ -1,7 +1,11 @@
 package com.njxnet.service.tmsp.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.njxnet.service.tmsp.core3.PipeLine;
+import com.njxnet.service.tmsp.core3.pipeline.ValidatePipeLineTemplate;
+import com.njxnet.service.tmsp.utils.ApplicationContextUtil;
 import com.njxnet.service.tmsp.utils.MyThreadPoolExecutor;
+import com.ulisesbocchio.jasyptspringboot.annotation.ConditionalOnMissingBean;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
@@ -64,5 +68,17 @@ public class MyConfig {
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ValidatePipeLineTemplate validatePipeLineTemplate(){
+        ValidatePipeLineTemplate template = new ValidatePipeLineTemplate();
+
+        // 添加管道
+        template.getValidatePipeLineList().add((PipeLine) ApplicationContextUtil.getBeanByName("validatePipeLine"));
+        template.getValidatePipeLineList().add((PipeLine) ApplicationContextUtil.getBeanByName(""));
+
+        return template;
     }
 }

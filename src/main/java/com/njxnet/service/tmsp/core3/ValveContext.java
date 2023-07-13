@@ -1,7 +1,7 @@
 package com.njxnet.service.tmsp.core3;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @program: TMSP
@@ -11,7 +11,7 @@ import java.util.Map;
  **/
 public class  ValveContext<T> {
 
-    private Map<String, T> contextMap = new HashMap<>();
+    private Map<String, T> contextMap = new ConcurrentHashMap<>();
 
     public Map<String, T> getContextMap() {
         return contextMap;

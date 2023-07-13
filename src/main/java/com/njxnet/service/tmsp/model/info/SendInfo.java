@@ -57,4 +57,6 @@ public class SendInfo {
 
     private Map<String, AjaxResult> resultMap;
 
+    private boolean validatePass;
+
 }

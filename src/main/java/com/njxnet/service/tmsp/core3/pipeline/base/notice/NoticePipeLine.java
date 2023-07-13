@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.core3.pipeline.base.validate;
+package com.njxnet.service.tmsp.core3.pipeline.base.notice;
 
 import com.njxnet.service.tmsp.common.BaseException;
 import com.njxnet.service.tmsp.core3.ValveContext;
@@ -16,18 +16,18 @@ import static com.njxnet.service.tmsp.common.ResultStatusCode.NO_SENDINFO;
  * @author: Stone
  * @create: 2023-07-11 22:00
  **/
-@Component("validatePipeLine")
-public class ValidatePipeLine extends BasePipeLine<ValidateValve, ValidateValveContext> {
+@Component("noticePipeLine")
+public class NoticePipeLine extends BasePipeLine<NoticeValve, NoticeValveContext> {
 
 
     @PostConstruct
     public void init(){
-        super.init(ValidateValve.class);
+        super.init(NoticeValve.class);
     }
 
     @Override
     public void invoke(ValveContext context) {
-        ValidateValveContext validateValveContext = new ValidateValveContext();
+        NoticeValveContext validateValveContext = new NoticeValveContext();
         SendInfo sendInfo = (SendInfo) context.getContextMap().get("sendInfo");
 
         if (sendInfo == null) {
@@ -35,8 +35,7 @@ public class ValidatePipeLine extends BasePipeLine<ValidateValve, ValidateValveC
         }
 
         validateValveContext.setContent(sendInfo.getContent());
+        validateValveContext.setViolence(sendInfo.isValidatePass());
         super.getFirstValve().invoke(validateValveContext);
-        // 最后将结果设置到 sendInfo 中
-        sendInfo.setValidatePass(validateValveContext.isViolence());
     }
 }

@@ -2,8 +2,12 @@ package com.njxnet.service.tmsp.core3.pipeline;
 
 import com.njxnet.service.tmsp.core.PostContext;
 import com.njxnet.service.tmsp.core2.send.SendMessageOuterPostProcessor2;
+import com.njxnet.service.tmsp.core3.PipeLine;
+import com.njxnet.service.tmsp.core3.ValveContext;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * @program: TMSP
@@ -15,20 +19,24 @@ import org.springframework.stereotype.Component;
 public class SendMessageOuterCheckValidatePostProcessor implements SendMessageOuterPostProcessor2 {
 
 
-
-    @Override
-    public boolean handleBefore(PostContext<SendInfo> postContext) {
-        return SendMessageOuterPostProcessor2.super.handleBefore(postContext);
-    }
+    @Resource
+    private ValidatePipeLineTemplate template;
 
     @Override
     public void handleAfter(PostContext<SendInfo> postContext) {
-        SendMessageOuterPostProcessor2.super.handleAfter(postContext);
+        SendInfo sendInfo = postContext.getT();
+
+        ValveContext valveContext = new ValveContext();
+        valveContext.getContextMap().put("sendInfo", sendInfo);
+
+        for (PipeLine pipeLine : template.getValidatePipeLineList()) {
+            pipeLine.invoke(valveContext);
+        }
     }
 
     @Override
     public int getPriprity() {
-        return SendMessageOuterPostProcessor2.super.getPriprity();
+        return -1;
     }
 
 
