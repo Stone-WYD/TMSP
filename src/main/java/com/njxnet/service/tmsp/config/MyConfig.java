@@ -1,8 +1,8 @@
 package com.njxnet.service.tmsp.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.njxnet.service.tmsp.core3.PipeLine;
-import com.njxnet.service.tmsp.core3.pipeline.ValidatePipeLineTemplate;
+import com.njxnet.service.tmsp.design.core3_pipeline.PipeLine;
+import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.ValidatePipeLineTemplate;
 import com.njxnet.service.tmsp.utils.ApplicationContextUtil;
 import com.njxnet.service.tmsp.utils.MyThreadPoolExecutor;
 import com.ulisesbocchio.jasyptspringboot.annotation.ConditionalOnMissingBean;
