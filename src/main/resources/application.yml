@@ -3,6 +3,13 @@ server:
   port: 8081
 
 spring:
+#  当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
+  datasource:
+    url: jdbc:mysql://192.168.30.43:3306/tmsp_study?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: ssfw
+    password: njxnet1234
+    driverClassName: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
 #  dynamic: #动态数据源
 #    primary: tmsp #表示默认的数据源
 #    datasource:
@@ -11,18 +18,37 @@ spring:
 #        url: jdbc:mysql://192.168.30.43:3306/tmsp?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
 #        username: ssfw  root
 #        password: njxnet1234  123456
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        #druid自有属性
+#        filters: stat
+#        initialSize: 0
+#        minIdle: 1
+#        maxActive: 50
+#        maxWait: 10000
+#        timeBetweenEvictionRunsMillis: 60000
+#        minEvictableIdleTimeMillis: 200000
+#        testWhileIdle: true
+#        testOnBorrow: true
+#        validationQuery: select 1
 #      interface:
 #        # 接口平台数据源
 #        url: jdbc:mysql://192.168.30.42:3306/interface_platform?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
 #        username: root
 #        password:
-#  当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
-  datasource:
-    url: jdbc:mysql://192.168.30.43:3306/tmsp_study?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
-    username: ssfw
-    password: njxnet1234
-    driverClassName: com.mysql.cj.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        #druid自有属性
+#        filters: stat
+#        initialSize: 0
+#        minIdle: 1
+#        maxActive: 50
+#        maxWait: 10000
+#        timeBetweenEvictionRunsMillis: 60000
+#        minEvictableIdleTimeMillis: 200000
+#        testWhileIdle: true
+#        testOnBorrow: true
+#        validationQuery: select 1
+
+
 
 
 
@@ -35,7 +61,7 @@ mybatis-plus:
   mapper-locations: classpath:mappers/*xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
-            # org.apache.ibatis.logging.slf4j.Slf4jImpl 这个日志可以输出到日志文件中
+    # org.apache.ibatis.logging.slf4j.Slf4jImpl 这个日志可以输出到日志文件中
 
 
 ############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
@@ -68,7 +94,7 @@ config:
     base: http://192.168.30.43:8080
     send: /phoneMsg/sendMsg
   core:
-     version: 2
+    version: 2
 
 wyd:
   new:
