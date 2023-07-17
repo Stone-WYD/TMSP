@@ -1,6 +1,5 @@
 package com.njxnet.service.tmsp.design.core5_aop.test;
 
-import com.njxnet.service.tmsp.common.AjaxResult;
 import com.njxnet.service.tmsp.design.core5_aop.RpcProvider;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +9,9 @@ import org.springframework.stereotype.Service;
  * @author: Stone
  * @create: 2023-07-17 14:05
  **/
-@Service("testServiceWyd")
+@Service
 @RpcProvider(clientClass = RpcTestService.class)
-public class TestService {
+public class AopTestService {
 
    public String test(String testArg){
        System.out.println("运行到目标类内部方法了，传参为：" + testArg );

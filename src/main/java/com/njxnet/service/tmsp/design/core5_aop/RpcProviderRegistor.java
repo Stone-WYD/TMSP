@@ -23,7 +23,7 @@ import java.util.List;
 public class RpcProviderRegistor implements BeanFactoryPostProcessor, ApplicationContextAware,
         ApplicationListener<ContextRefreshedEvent> {
 
-    private static ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
     private ConfigurableListableBeanFactory configurableListableBeanFactory;
 
     @Override
@@ -71,11 +71,11 @@ public class RpcProviderRegistor implements BeanFactoryPostProcessor, Applicatio
      */
     private List<ProxyInfo> scanRpcProvider() {
         List<ProxyInfo> result = new ArrayList<>();
-        applicationContext.getBeansOfType(RpcProvider.class).forEach((name, instance)->{
+        applicationContext.getBeansWithAnnotation(RpcProvider.class).forEach((name, instance)->{
             ProxyInfo proxyInfo = new ProxyInfo();
             proxyInfo.beanName = name;
             RpcProvider rpcProvider = AnnotatedElementUtils.getMergedAnnotation(instance.getClass(), RpcProvider.class);
-            proxyInfo.clientClass = rpcProvider.getClass();
+            proxyInfo.clientClass = rpcProvider.clientClass();
 
             result.add(proxyInfo);
         });

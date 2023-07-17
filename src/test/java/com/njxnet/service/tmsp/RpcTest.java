@@ -3,7 +3,11 @@ package com.njxnet.service.tmsp;
 import com.njxnet.service.tmsp.common.AjaxResult;
 import com.njxnet.service.tmsp.design.core5_aop.test.RpcTestService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import javax.annotation.Resource;
 
@@ -14,14 +18,17 @@ import javax.annotation.Resource;
  * @create: 2023-07-17 14:09
  **/
 @SpringBootTest
-public class RpcTest {
+public class RpcTest{
 
     @Resource
     private RpcTestService rpcTestService;
+
 
     @Test
     public void test(){
         AjaxResult wyd = rpcTestService.test("wyd");
         System.out.println(wyd);
     }
+
+
 }
