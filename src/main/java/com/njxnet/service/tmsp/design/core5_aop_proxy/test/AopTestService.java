@@ -1,7 +1,7 @@
-package com.njxnet.service.tmsp.design.core5_aop.test;
+package com.njxnet.service.tmsp.design.core5_aop_proxy.test;
 
-import com.njxnet.service.tmsp.design.core5_aop.RpcProvider;
-import com.njxnet.service.tmsp.design.core5_aop.check.ForRpc;
+import com.njxnet.service.tmsp.design.core5_aop_proxy.RpcProvider;
+import com.njxnet.service.tmsp.design.core5_aop_proxy.check.ForRpc;
 import org.springframework.stereotype.Service;
 
 /**

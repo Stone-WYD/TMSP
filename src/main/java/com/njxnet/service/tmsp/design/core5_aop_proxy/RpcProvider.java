@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.design.core5_aop;
+package com.njxnet.service.tmsp.design.core5_aop_proxy;
 
 import java.lang.annotation.*;
 

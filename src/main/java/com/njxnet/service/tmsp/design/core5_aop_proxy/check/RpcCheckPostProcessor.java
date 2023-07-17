@@ -1,6 +1,6 @@
-package com.njxnet.service.tmsp.design.core5_aop.check;
+package com.njxnet.service.tmsp.design.core5_aop_proxy.check;
 
-import com.njxnet.service.tmsp.design.core5_aop.RpcProvider;
+import com.njxnet.service.tmsp.design.core5_aop_proxy.RpcProvider;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.annotation.AnnotatedElementUtils;

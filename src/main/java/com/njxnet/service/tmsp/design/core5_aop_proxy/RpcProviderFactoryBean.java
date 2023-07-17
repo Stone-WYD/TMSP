@@ -1,6 +1,7 @@
-package com.njxnet.service.tmsp.design.core5_aop;
+package com.njxnet.service.tmsp.design.core5_aop_proxy;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.aop.framework.ProxyFactoryBean;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.aop.framework.ProxyFactoryBean;
  * @create: 2023-07-17 09:37
  **/
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class RpcProviderFactoryBean extends ProxyFactoryBean {
     private String proxyBeanName;
 }
