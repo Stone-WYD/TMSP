@@ -1,6 +1,7 @@
 package com.njxnet.service.tmsp.design.core5_aop.test;
 
 import com.njxnet.service.tmsp.design.core5_aop.RpcProvider;
+import com.njxnet.service.tmsp.design.core5_aop.check.ForRpc;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,8 +14,9 @@ import org.springframework.stereotype.Service;
 @RpcProvider(clientClass = RpcTestService.class)
 public class AopTestService {
 
-   public String test(String testArg){
-       System.out.println("运行到目标类内部方法了，传参为：" + testArg );
-       return "target with testArg " + testArg;
-   }
+    @ForRpc
+    public String test(String testArg) {
+        System.out.println("运行到目标类内部方法了，传参为：" + testArg);
+        return "target with testArg " + testArg;
+    }
 }

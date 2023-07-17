@@ -52,7 +52,7 @@ public class RpcProviderRegistor implements BeanFactoryPostProcessor, Applicatio
             List<ProxyInfo> proxyInfoList = scanRpcProvider();
 
             for (ProxyInfo proxyInfo : proxyInfoList) {
-                // 创建工厂类
+                // 创建工厂Bean对象
                 RpcProviderFactoryBean rpcProviderFactoryBean = createProxyBean(proxyInfo.clientClass);
                 rpcProviderFactoryBean.setProxyBeanName(proxyInfo.beanName);
                 rpcProviderFactoryBean.setBeanFactory(configurableListableBeanFactory);
@@ -75,8 +75,11 @@ public class RpcProviderRegistor implements BeanFactoryPostProcessor, Applicatio
             ProxyInfo proxyInfo = new ProxyInfo();
             proxyInfo.beanName = name;
             RpcProvider rpcProvider = AnnotatedElementUtils.getMergedAnnotation(instance.getClass(), RpcProvider.class);
-            proxyInfo.clientClass = rpcProvider.clientClass();
-
+            Class<?> clientClass = rpcProvider.clientClass();
+            if (clientClass == null) {
+                throw new RuntimeException("@RpcProvider注解的clientClass属性不能为空！");
+            }
+            proxyInfo.clientClass = clientClass;
             result.add(proxyInfo);
         });
         return result;
