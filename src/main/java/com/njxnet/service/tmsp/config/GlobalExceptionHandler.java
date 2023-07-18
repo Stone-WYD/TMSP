@@ -4,6 +4,7 @@ import cn.dev33.satoken.exception.DisableServiceException;
 import cn.dev33.satoken.exception.NotLoginException;
 import com.njxnet.service.tmsp.common.AjaxResult;
 import com.njxnet.service.tmsp.common.AjaxResultUtil;
+import com.njxnet.service.tmsp.common.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -20,8 +21,7 @@ public class GlobalExceptionHandler {
     public AjaxResult onDisableServiceException(DisableServiceException de){
         // 异常信息输出
         log.error(de.getMessage());
-        AjaxResult result = new AjaxResult<>(LOGIN_FREEZE.getCode(), LOGIN_FREEZE.getName());
-        return result;
+        return new AjaxResult<>(LOGIN_FREEZE.getCode(), LOGIN_FREEZE.getName());
     }
 
     // 登录或者鉴权异常处理
@@ -93,6 +93,22 @@ public class GlobalExceptionHandler {
         myResult.setCode(BaseResultStatusCode.ERROR.getCode());
         myResult.setData(errorMap);
         return myResult;
+    }*/
+
+    @ExceptionHandler(RuntimeException.class)
+    public AjaxResult onRuntimeException(RuntimeException runtimeException) {
+        BaseException be;
+        // BaseException 在被抛出后会封装到 RuntimeException 中
+        Throwable cause = runtimeException.getCause();
+        if (cause instanceof BaseException) {
+            be = (BaseException) cause;
+        } else throw runtimeException;
+
+        AjaxResult ajaxResult = new AjaxResult();
+        int errorCode = be.getCode();
+        ajaxResult.setCode(errorCode);
+        ajaxResult.setMessage(be.getMessage());
+        return ajaxResult;
     }
 
 
@@ -103,8 +119,8 @@ public class GlobalExceptionHandler {
         // 将异常打印出来
         log.error(e.getMessage());
         // 将异常封装成result返回给前端
-        return AjaxResultUtil.getDefaultFalseAjaxResult(new AjaxResult<>());
-    }*/
+        return AjaxResultUtil.getFalseAjaxResult(new AjaxResult<>());
+    }
 
 
 }
