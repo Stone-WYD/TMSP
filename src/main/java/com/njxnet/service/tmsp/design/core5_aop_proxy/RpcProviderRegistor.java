@@ -90,9 +90,9 @@ public class RpcProviderRegistor implements BeanFactoryPostProcessor, Applicatio
     * @Author: Stone
     * @Date: 2023/7/17
     */
-    private RpcProviderFactoryBean createProxyBean(Class interfaceClazz) {
+    private RpcProviderFactoryBean createProxyBean(Class clientClass) {
         RpcProviderFactoryBean factoryBean = new RpcProviderFactoryBean();
-        factoryBean.setInterfaces(interfaceClazz);
+        factoryBean.setInterfaces(clientClass);
         // 代理类不只增强目标类的public方法
         factoryBean.setProxyTargetClass(false);
         factoryBean.setInterceptorNames("rpcProviderMethodInterceptor");
