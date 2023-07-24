@@ -31,7 +31,7 @@ public class SendMessageOuterCheckValidatePostProcessor implements SendMessageOu
     public void handleAfter(PostContext<SendInfo> postContext) {
         SendInfo sendInfo = postContext.getT();
 
-        ValveContext valveContext = new ValveContext();
+        ValveContext valveContext = new ValveContext<SendInfo>();
         valveContext.getContextMap().put("sendInfo", sendInfo);
 
         for (PipeLine pipeLine : template.getValidatePipeLineList()) {
