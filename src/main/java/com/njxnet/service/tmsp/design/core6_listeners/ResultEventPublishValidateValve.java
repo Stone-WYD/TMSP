@@ -42,6 +42,6 @@ public class ResultEventPublishValidateValve extends ValidateValve {
     @Override
     public Integer getPriprity() {
         // 确保最后被调用
-        return Integer.MAX_VALUE;
+        return Integer.MAX_VALUE - 1;
     }
 }

@@ -2,6 +2,7 @@ package com.njxnet.service.tmsp.design.core6_listeners.event.status;
 
 import com.njxnet.service.tmsp.design.core6_listeners.event.Event;
 import com.njxnet.service.tmsp.design.core6_listeners.model.UserInfo;
+import lombok.Data;
 
 /**
  * @program: TMSP
@@ -9,6 +10,7 @@ import com.njxnet.service.tmsp.design.core6_listeners.model.UserInfo;
  * @author: Stone
  * @create: 2023-07-24 20:45
  **/
+@Data
 public class OfflineEvent implements Event {
 
     private String contentKey;

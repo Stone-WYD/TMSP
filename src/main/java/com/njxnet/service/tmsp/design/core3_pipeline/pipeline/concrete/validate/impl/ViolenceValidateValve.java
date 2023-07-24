@@ -38,7 +38,7 @@ public class ViolenceValidateValve extends ValidateValve {
 
     @Override
     public Integer getPriprity() {
-        return null;
+        return 1;
     }
 
     private void invokeWare(ValidateContent validateContent){
