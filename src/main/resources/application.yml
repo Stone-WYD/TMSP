@@ -81,7 +81,7 @@ sa-token:
   # 是否输出操作日志
   is-log: false
 
-############## knife4j 配置 (官网: https://doc.xiaominfo.com/) ##############
+############## knife4j 配置 (官网: https://doc.xiaominfo.com/)，使用JRebel时，接口返回结果会缺失信息 ##############
 # knife4j的使用至少需要加入一个配置
 knife4j:
   setting:
