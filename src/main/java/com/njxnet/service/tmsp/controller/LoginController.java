@@ -51,7 +51,7 @@ public class LoginController {
     public void init(){
         List<TmspSysUser> list = sysUserService.query().eq("status", 0).list();
         if (CollectionUtil.isNotEmpty(list)) {
-            list.stream().forEach(user -> StpUtil.disable(user.getId(), -1));
+            list.forEach(user -> StpUtil.disable(user.getId(), -1));
         }
     }
 
@@ -110,7 +110,7 @@ public class LoginController {
         return ajaxResult;
     }
 
-/*    @ApiOperation(value = "字符串加密", notes = "字符串加密", hidden = true)
+    /*@ApiOperation(value = "字符串加密", notes = "字符串加密", hidden = true)
     @RequestMapping(value = "/getEncryption", method = RequestMethod.POST)
     public AjaxResult<String> getEncryption(String param) {
         String decrypt = DESUtil.encrypt(Constants.secretKey, param);
