@@ -31,7 +31,7 @@ public class SoutNoticeValve extends NoticeValve implements ValidateContentAware
 
     @Override
     public Integer getPriprity() {
-        return null;
+        return 1;
     }
 
     @Override

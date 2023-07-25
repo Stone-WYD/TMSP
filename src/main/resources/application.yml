@@ -5,9 +5,9 @@ server:
 spring:
 #  当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
   datasource:
-    url: jdbc:mysql://192.168.30.43:3306/tmsp_study?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
-    username: ssfw
-    password: njxnet1234
+    url: jdbc:mysql://localhost:3306/tmsp?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
     driverClassName: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 #  dynamic: #动态数据源

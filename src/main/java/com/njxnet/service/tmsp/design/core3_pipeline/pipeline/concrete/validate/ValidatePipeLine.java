@@ -29,6 +29,7 @@ public class ValidatePipeLine extends BasePipeLine<ValidateValve, ValidateValveC
     public void invoke(ValveContext context) {
         ValidateValveContext validateValveContext = new ValidateValveContext();
         SendInfo sendInfo = (SendInfo) context.getContextMap().get("sendInfo");
+        validateValveContext.getContextMap().put("sendInfo", sendInfo);
 
         if (sendInfo == null) {
             throw new BaseException(NO_SENDINFO.getCode(), NO_SENDINFO.getName());

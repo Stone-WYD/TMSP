@@ -15,4 +15,5 @@ public class ValidateValveContext extends ValveContext<SendInfo> {
 
     private String content;
 
+    private boolean isPass = true;
 }
