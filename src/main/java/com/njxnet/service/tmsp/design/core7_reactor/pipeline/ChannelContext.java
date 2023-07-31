@@ -14,7 +14,7 @@ import java.util.Map;
  * @create: 2023-07-30 18:34
  **/
 @Data
-public class ChannelContext<T> extends ValveContext<T> {
+public class ChannelContext<T>{
     /**
     * 驱动服务的参数
     * */

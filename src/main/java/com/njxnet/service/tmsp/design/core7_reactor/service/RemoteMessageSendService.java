@@ -1,6 +1,7 @@
-package com.njxnet.service.tmsp.design.core7_reactor;
+package com.njxnet.service.tmsp.design.core7_reactor.service;
 
 import com.njxnet.service.tmsp.common.AjaxResult;
+import com.njxnet.service.tmsp.design.core7_reactor.AsynReceptResult;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
 public interface RemoteMessageSendService {
 
     /**
-    * @Description: 远程调用，返回callId，用户后期可以根据id与结果进行关联
+    * @Description: 远程调用，返回callId
     * @Author: Stone
     * @Date: 2023/7/30
     */
