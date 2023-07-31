@@ -1,6 +1,7 @@
 package com.njxnet.service.tmsp.design.core7_reactor;
 
 import com.njxnet.service.tmsp.design.core7_reactor.pipeline.Handler;
+import com.njxnet.service.tmsp.design.core7_reactor.service.AsynRemoteServiceProxy;
 import com.njxnet.service.tmsp.design.core7_reactor.worker.AppWorker;
 import com.njxnet.service.tmsp.design.core7_reactor.worker.NetWorker;
 import lombok.extern.slf4j.Slf4j;
@@ -14,10 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AsynRemoteChannel {
 
-    private final EventDispatcher eventDispatcher;
+    private final EventDispatcher eventDispatcher = new EventDispatcher();
+    private AsynRemoteServiceProxy serviceProxy;
 
     public AsynRemoteChannel(NetWorker netWorker, AppWorker appWorker) {
-        eventDispatcher = new EventDispatcher(appWorker, netWorker);
+        eventDispatcher.setNetWorker(netWorker);
+        eventDispatcher.setAppWorker(appWorker);
     }
 
     public void addPrepareHandler(Handler handler) {
@@ -26,5 +29,9 @@ public class AsynRemoteChannel {
 
     public void addResultRenderHandler(Handler handler){
         eventDispatcher.getResultRenderPipeLine().getHandlerList().add(handler);
+    }
+
+    public void bindRemoteService(AsynRemoteServiceProxy asynRemoteServiceProxy) {
+        serviceProxy = asynRemoteServiceProxy;
     }
 }

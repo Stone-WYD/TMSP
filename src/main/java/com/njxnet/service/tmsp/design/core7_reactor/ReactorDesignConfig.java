@@ -1,12 +1,17 @@
 package com.njxnet.service.tmsp.design.core7_reactor;
 
-import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
+import com.njxnet.service.tmsp.common.AjaxResult;
+import com.njxnet.service.tmsp.design.core7_reactor.pipeline.ChannelContext;
+import com.njxnet.service.tmsp.design.core7_reactor.service.AsynRemoteServiceProxy;
 import com.njxnet.service.tmsp.design.core7_reactor.service.RemoteMessageSendService;
 import com.njxnet.service.tmsp.design.core7_reactor.worker.AppWorker;
 import com.njxnet.service.tmsp.design.core7_reactor.worker.NetWorker;
+import com.njxnet.service.tmsp.model.info.SendInfo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Map;
 
 /**
  * @program: TMSP
@@ -33,7 +38,29 @@ public class ReactorDesignConfig {
                 channelContext -> System.out.println(JSONUtil.toJsonStr(channelContext.getAsynReceptResult()))
         );
 
+        // 构建短信发送服务
+        AsynRemoteServiceProxy asynRemoteServiceProxy = buildAsynRemoteServiceProxy(remoteMessageSendService);
+        asynRemoteChannel.bindRemoteService(asynRemoteServiceProxy);
+
+
 
         return asynRemoteChannel;
+    }
+
+    private static AsynRemoteServiceProxy buildAsynRemoteServiceProxy
+            (RemoteMessageSendService remoteMessageSendService){
+        return new AsynRemoteServiceProxy<Boolean>() {
+            @Override
+            public AjaxResult<String> call(ChannelContext channelContext) {
+                Map contextMap = channelContext.getContextMap();
+                SendInfo sendInfo = (SendInfo) contextMap.get("sendInfo");
+                return remoteMessageSendService.send(sendInfo);
+            }
+
+            @Override
+            public AsynReceptResult<Map<String, AjaxResult<Boolean>>> requestReceipt() {
+                return remoteMessageSendService.getResultList();
+            }
+        };
     }
 }

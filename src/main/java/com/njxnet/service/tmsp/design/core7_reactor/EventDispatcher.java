@@ -20,14 +20,22 @@ public class EventDispatcher {
 
     private NetWorker netWorker;
 
+    public void setAppWorker(AppWorker appWorker) {
+        this.appWorker = appWorker;
+    }
+
+    public void setNetWorker(NetWorker netWorker) {
+        this.netWorker = netWorker;
+    }
+
     // 预处理通道
-    private PipeLine preparePipeLine = new PipeLine();
+    private final PipeLine preparePipeLine = new PipeLine();
 
     // 远程请求通道
-    private PipeLine remoteRequestPipeLine = new PipeLine();
+    private final PipeLine remoteRequestPipeLine = new PipeLine();
 
     // 结果渲染通道
-    private PipeLine resultRenderPipeLine = new PipeLine();
+    private final PipeLine resultRenderPipeLine = new PipeLine();
 
     public EventDispatcher(AppWorker appWorker, NetWorker netWorker) {
         this.appWorker = appWorker;
@@ -53,9 +61,7 @@ public class EventDispatcher {
 
     private void walkPipeLine(PipeLine pipeLine, BaseEvent baseEvent){
         // 驱动管道开始工作
-        pipeLine.getHandlerList().forEach(handler -> {
-            handler.handle(baseEvent.getChannelContext());
-        });
+        pipeLine.getHandlerList().forEach(handler -> handler.handle(baseEvent.getChannelContext()));
         // 默认handler最后工作
         if (pipeLine.getDefaultHandler() != null) {
             pipeLine.getDefaultHandler().handle(baseEvent.getChannelContext());
@@ -66,19 +72,13 @@ public class EventDispatcher {
     public void dispatch(BaseEvent baseEvent){
         if (baseEvent instanceof PrepareEvent) {
             // 应用线程分发
-            appWorker.subTask(()->{
-                walkPipeLine(preparePipeLine, baseEvent);
-            });
+            appWorker.subTask(()-> walkPipeLine(preparePipeLine, baseEvent));
         }else if (baseEvent instanceof ResultRenderEvent) {
             // 结果线程分发
-            appWorker.subTask(()->{
-                walkPipeLine(resultRenderPipeLine, baseEvent);
-            });
+            appWorker.subTask(()-> walkPipeLine(resultRenderPipeLine, baseEvent));
         }else if (baseEvent instanceof RemoteRequestEvent) {
             // 结果线程分发
-            netWorker.subTask(()->{
-                walkPipeLine(remoteRequestPipeLine, baseEvent);
-            });
+            netWorker.subTask(()-> walkPipeLine(remoteRequestPipeLine, baseEvent));
         }
     }
 
