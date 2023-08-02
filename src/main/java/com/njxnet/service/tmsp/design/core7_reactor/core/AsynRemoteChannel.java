@@ -91,9 +91,10 @@ public class AsynRemoteChannel {
                     AjaxResult<String> rpcResult = serviceProxy.call(channelContext);
                     //此时远程服务不会返回计算结果，而是先异步返回了此次调用的callId，在后面要获取真正结果时使用 callId 从批量结果中获取真正的结果放入到channelContext中
                     channelContext.setCallId(rpcResult.getData());
+                    channelContextMap.put(rpcResult.getData(), channelContext);
                 }
         );
-        Thread eventloop = new Thread(()-> startReact());
+        Thread eventloop = new Thread(this::startReact);
         eventloop.start();
         start = true;
     }
