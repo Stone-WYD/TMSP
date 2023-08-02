@@ -1,9 +1,13 @@
 package com.njxnet.service.tmsp.design.core7_reactor;
 
 import cn.hutool.json.JSONUtil;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.njxnet.service.tmsp.common.AjaxResult;
-import com.njxnet.service.tmsp.design.core7_reactor.pipeline.ChannelContext;
-import com.njxnet.service.tmsp.design.core7_reactor.service.AsynRemoteServiceProxy;
+import com.njxnet.service.tmsp.design.core7_reactor.core.AsynReceptResult;
+import com.njxnet.service.tmsp.design.core7_reactor.core.AsynRemoteChannel;
+import com.njxnet.service.tmsp.design.core7_reactor.core.ChannelContext;
+import com.njxnet.service.tmsp.design.core7_reactor.core.AsynRemoteServiceProxy;
 import com.njxnet.service.tmsp.design.core7_reactor.service.RemoteMessageSendService;
 import com.njxnet.service.tmsp.design.core7_reactor.worker.AppWorker;
 import com.njxnet.service.tmsp.design.core7_reactor.worker.NetWorker;
@@ -12,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: TMSP
@@ -22,6 +27,16 @@ import java.util.Map;
 @Configuration
 public class ReactorDesignConfig {
 
+    private final static Cache<String, Boolean> localCache = CacheBuilder
+            .newBuilder()
+            // 设置 cache 的初始大小为 100（要合理设置该值）
+            .initialCapacity(100)
+            // 设置并发数为5，即同一时间最多只有5个线程可以向cache中写入
+            .concurrencyLevel(5)
+            // 写入 1 分钟后过期
+            .expireAfterWrite(1, TimeUnit.MINUTES)
+            // 构建 cache 实例
+            .build();
 
     @Bean
     public AsynRemoteChannel remoteMessageChannel(RemoteMessageSendService remoteMessageSendService,
@@ -42,8 +57,16 @@ public class ReactorDesignConfig {
         AsynRemoteServiceProxy asynRemoteServiceProxy = buildAsynRemoteServiceProxy(remoteMessageSendService);
         asynRemoteChannel.bindRemoteService(asynRemoteServiceProxy);
 
+        // 结果放到队列中
+        asynRemoteChannel.addResultRenderHandler(
+                // TODO: 2023/8/2 这里做演示用，实际情况如果不是单体的，则要用集群缓存
+                channelContext -> {
+                    localCache.put(channelContext.getCallId(), (Boolean) channelContext.getAsynReceptResult().getData());
+                }
+        );
 
-
+        // 启动通道反应堆
+        asynRemoteChannel.start();
         return asynRemoteChannel;
     }
 

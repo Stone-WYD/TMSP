@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.design.core7_reactor;
+package com.njxnet.service.tmsp.design.core7_reactor.core;
 
 import com.njxnet.service.tmsp.design.core7_reactor.pipeline.event.BaseEvent;
 import com.njxnet.service.tmsp.design.core7_reactor.pipeline.PipeLine;

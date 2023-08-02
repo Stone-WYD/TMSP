@@ -1,7 +1,7 @@
 package com.njxnet.service.tmsp.design.core7_reactor.service;
 
 import com.njxnet.service.tmsp.common.AjaxResult;
-import com.njxnet.service.tmsp.design.core7_reactor.AsynReceptResult;
+import com.njxnet.service.tmsp.design.core7_reactor.core.AsynReceptResult;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 
 import java.util.Map;

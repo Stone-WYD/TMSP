@@ -1,6 +1,6 @@
 package com.njxnet.service.tmsp.design.core7_reactor.pipeline.event;
 
-import com.njxnet.service.tmsp.design.core7_reactor.pipeline.ChannelContext;
+import com.njxnet.service.tmsp.design.core7_reactor.core.ChannelContext;
 
 /**
  * @program: TMSP
@@ -17,6 +17,10 @@ public class BaseEvent {
     }
 
     public void setChannelContext(ChannelContext channelContext) {
+        this.channelContext = channelContext;
+    }
+
+    public BaseEvent(ChannelContext channelContext) {
         this.channelContext = channelContext;
     }
 }

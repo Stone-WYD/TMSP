@@ -123,6 +123,7 @@
             <version>21.0</version>
         </dependency>
 
+
         <!--生成验证码-->
         <dependency>
             <groupId>com.github.cage</groupId>
