@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.design.core7_reactor;
+package com.njxnet.service.tmsp.design.core7_reactor.configuration;
 
 import cn.hutool.json.JSONUtil;
 import com.google.common.cache.Cache;
@@ -43,6 +43,10 @@ public class ReactorDesignConfig {
                                                   NetWorker netWorker, AppWorker appWorker){
         AsynRemoteChannel asynRemoteChannel = new AsynRemoteChannel(netWorker, appWorker);
 
+        // 构建短信发送服务
+        AsynRemoteServiceProxy asynRemoteServiceProxy = buildAsynRemoteServiceProxy(remoteMessageSendService);
+        asynRemoteChannel.bindRemoteService(asynRemoteServiceProxy);
+
         // 前置处理中的远程调用参数打印
         asynRemoteChannel.addPrepareHandler(
                 channelContext -> System.out.println(JSONUtil.toJsonStr(channelContext.getParamMap()))
@@ -53,11 +57,7 @@ public class ReactorDesignConfig {
                 channelContext -> System.out.println(JSONUtil.toJsonStr(channelContext.getAsynReceptResult()))
         );
 
-        // 构建短信发送服务
-        AsynRemoteServiceProxy asynRemoteServiceProxy = buildAsynRemoteServiceProxy(remoteMessageSendService);
-        asynRemoteChannel.bindRemoteService(asynRemoteServiceProxy);
-
-        // 结果放到队列中
+        // 后置处理中的将结果放到队列中
         asynRemoteChannel.addResultRenderHandler(
                 // TODO: 2023/8/2 这里做演示用，实际情况如果不是单体的，则要用集群缓存
                 channelContext -> {
