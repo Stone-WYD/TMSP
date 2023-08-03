@@ -72,15 +72,4 @@ public class MyConfig {
         return builder.build();
     }
 
-    @Bean
-    @ConditionalOnMissingBean(ValidatePipeLineTemplate.class)
-    public ValidatePipeLineTemplate validatePipeLineTemplate(){
-        ValidatePipeLineTemplate template = new ValidatePipeLineTemplate();
-
-        // 添加管道
-        template.getValidatePipeLineList().add((PipeLine) ApplicationContextUtil.getBeanByName("validatePipeLine"));
-        template.getValidatePipeLineList().add((PipeLine) ApplicationContextUtil.getBeanByName("noticePipeLine"));
-
-        return template;
-    }
 }
