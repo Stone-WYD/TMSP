@@ -4,6 +4,7 @@ import com.njxnet.service.tmsp.design.core1_postprocessor.PostContext;
 import com.njxnet.service.tmsp.design.core2_module.send.SendMessageOuterPostProcessor2;
 import com.njxnet.service.tmsp.design.core3_pipeline.PipeLine;
 import com.njxnet.service.tmsp.design.core3_pipeline.ValveContext;
+import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.validate.ValidateValveContext;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import org.springframework.stereotype.Component;
 
@@ -31,11 +32,11 @@ public class SendMessageOuterCheckValidatePostProcessor implements SendMessageOu
     public void handleAfter(PostContext<SendInfo> postContext) {
         SendInfo sendInfo = postContext.getT();
 
-        ValveContext valveContext = new ValveContext<SendInfo>();
-        valveContext.getContextMap().put("sendInfo", sendInfo);
+        ValidateValveContext validateValveContext = new ValidateValveContext();
+        validateValveContext.setSendInfo(sendInfo);
 
         for (PipeLine pipeLine : template.getValidatePipeLineList()) {
-            pipeLine.invoke(valveContext);
+            pipeLine.invoke(validateValveContext);
         }
     }
 

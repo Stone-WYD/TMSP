@@ -36,8 +36,8 @@ public abstract class BasePipeLine<T extends Valve, C extends ValveContext> impl
         for (int i = 0; i < valveList.size()-1; i++) {
             valveList.get(i).setNext(valveList.get(i+1));
         }
-        // 设置最后一个 valve
-        LastValve<T, C> lastValve = new LastValve<>();
+        // 设置最后一个 valve，此处不必设置某种具体类型的 valve，因为 lastvalve 一般是做一些通用处理
+        LastValve lastValve = new LastValve<>();
         valveList.get(valveList.size()-1).setNext(lastValve);
 
         firstValve = valveList.get(0);

@@ -11,9 +11,11 @@ import lombok.Data;
  * @create: 2023-07-11 22:01
  **/
 @Data
-public class ValidateValveContext extends ValveContext<SendInfo> {
+public class ValidateValveContext implements ValveContext {
 
     private String content;
 
     private boolean isPass = true;
+
+    private SendInfo sendInfo;
 }

@@ -9,11 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author: Stone
  * @create: 2023-07-11 21:29
  **/
-public class  ValveContext<T> {
+public interface  ValveContext {
 
-    private Map<String, T> contextMap = new ConcurrentHashMap<>();
-
-    public Map<String, T> getContextMap() {
-        return contextMap;
-    }
 }

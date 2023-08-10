@@ -11,6 +11,7 @@ import lombok.Data;
  * @create: 2023-07-11 22:01
  **/
 @Data
-public class NoticeValveContext extends ValveContext<SendInfo> {
+public class NoticeValveContext implements ValveContext {
         // 预留，有需要的时候再加入
+        private SendInfo sendInfo;
 }
