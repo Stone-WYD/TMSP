@@ -23,7 +23,7 @@ public class ResultEventPublishValidateValve extends ValidateValve {
 
     @Override
     public void invoke(ValidateValveContext context) {
-        SendInfo sendInfo = context.getContextMap().get("sendInfo");
+        SendInfo sendInfo = context.getSendInfo();
 
         if (context.isPass()) {
             // 创建事件
