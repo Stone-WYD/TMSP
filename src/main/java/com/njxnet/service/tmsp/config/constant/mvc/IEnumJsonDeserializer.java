@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonStreamContext;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.njxnet.service.tmsp.constants.IEnum;
+import com.njxnet.service.tmsp.constant.IEnum;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.utils;
+package com.njxnet.service.tmsp.util;
 
 import com.njxnet.service.tmsp.model.info.ResourceNodeInfo;
 import java.util.ArrayList;

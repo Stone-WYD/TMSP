@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.constants;
+package com.njxnet.service.tmsp.constant;
 
 public enum DelEnum {
     DEL(0),

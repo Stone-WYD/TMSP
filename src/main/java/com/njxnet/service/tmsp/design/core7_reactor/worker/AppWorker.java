@@ -1,7 +1,7 @@
 package com.njxnet.service.tmsp.design.core7_reactor.worker;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.njxnet.service.tmsp.utils.MyThreadPoolExecutor;
+import com.njxnet.service.tmsp.util.MyThreadPoolExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

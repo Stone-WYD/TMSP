@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.njxnet.service.tmsp.constants.SendClient.REST_TEMPLATE;
-import static com.njxnet.service.tmsp.constants.SendClient.WEB_CLIENT;
+import static com.njxnet.service.tmsp.constant.SendClient.REST_TEMPLATE;
+import static com.njxnet.service.tmsp.constant.SendClient.WEB_CLIENT;
 
 @Component
 @Slf4j

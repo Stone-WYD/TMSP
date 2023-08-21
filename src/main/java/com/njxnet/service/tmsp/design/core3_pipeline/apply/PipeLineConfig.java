@@ -1,8 +1,7 @@
 package com.njxnet.service.tmsp.design.core3_pipeline.apply;
 
 import com.njxnet.service.tmsp.design.core3_pipeline.PipeLine;
-import com.njxnet.service.tmsp.design.core3_pipeline.apply.ValidatePipeLineTemplate;
-import com.njxnet.service.tmsp.utils.ApplicationContextUtil;
+import com.njxnet.service.tmsp.util.ApplicationContextUtil;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

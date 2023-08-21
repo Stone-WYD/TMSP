@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.utils;
+package com.njxnet.service.tmsp.util;
 
 import java.text.NumberFormat;
 

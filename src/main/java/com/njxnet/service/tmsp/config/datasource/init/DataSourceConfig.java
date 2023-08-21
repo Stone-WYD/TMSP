@@ -4,8 +4,8 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.google.common.collect.Maps;
 import com.njxnet.service.tmsp.config.datasource.context.DsAspect;
 import com.njxnet.service.tmsp.config.datasource.context.DsEnum;
-import com.njxnet.service.tmsp.utils.ApplicationContextUtil;
-import com.njxnet.service.tmsp.utils.DruidCheckUtil;
+import com.njxnet.service.tmsp.util.ApplicationContextUtil;
+import com.njxnet.service.tmsp.util.DruidCheckUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -15,7 +15,6 @@ import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 

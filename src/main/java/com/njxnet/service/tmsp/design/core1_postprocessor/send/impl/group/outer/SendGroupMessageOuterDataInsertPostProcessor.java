@@ -1,6 +1,6 @@
 package com.njxnet.service.tmsp.design.core1_postprocessor.send.impl.group.outer;
 
-import com.njxnet.service.tmsp.constants.SendEnum;
+import com.njxnet.service.tmsp.constant.SendEnum;
 import com.njxnet.service.tmsp.design.core1_postprocessor.PostContext;
 import com.njxnet.service.tmsp.design.core1_postprocessor.send.SendMessageOuterPostProcessor;
 import com.njxnet.service.tmsp.entity.MessagesGroupSend;

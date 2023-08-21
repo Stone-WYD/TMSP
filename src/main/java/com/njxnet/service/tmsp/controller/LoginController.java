@@ -16,7 +16,7 @@ import com.njxnet.service.tmsp.model.dto.CaptchaDTO;
 import com.njxnet.service.tmsp.model.query.AdminLoginQuery;
 import com.njxnet.service.tmsp.model.vo.LoginVO;
 import com.njxnet.service.tmsp.service.TmspSysUserService;
-import com.njxnet.service.tmsp.utils.Constants;
+import com.njxnet.service.tmsp.util.Constants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.njxnet.service.tmsp.entity;
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.njxnet.service.tmsp.constants.FreezeIEnum;
+import com.njxnet.service.tmsp.constant.FreezeIEnum;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

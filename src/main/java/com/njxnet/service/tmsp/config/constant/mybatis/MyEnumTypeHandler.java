@@ -1,8 +1,8 @@
 package com.njxnet.service.tmsp.config.constant.mybatis;
 
-import com.njxnet.service.tmsp.constants.FreezeIEnum;
-import com.njxnet.service.tmsp.constants.IEnum;
-import com.njxnet.service.tmsp.constants.MessageSendStatusEnum;
+import com.njxnet.service.tmsp.constant.FreezeIEnum;
+import com.njxnet.service.tmsp.constant.IEnum;
+import com.njxnet.service.tmsp.constant.MessageSendStatusEnum;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;

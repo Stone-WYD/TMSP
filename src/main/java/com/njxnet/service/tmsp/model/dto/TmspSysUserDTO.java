@@ -1,6 +1,6 @@
 package com.njxnet.service.tmsp.model.dto;
 
-import com.njxnet.service.tmsp.constants.FreezeIEnum;
+import com.njxnet.service.tmsp.constant.FreezeIEnum;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;

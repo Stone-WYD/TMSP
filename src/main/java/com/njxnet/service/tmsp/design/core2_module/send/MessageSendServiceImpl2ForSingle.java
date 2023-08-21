@@ -1,7 +1,7 @@
 package com.njxnet.service.tmsp.design.core2_module.send;
 
 import com.njxnet.service.tmsp.common.AjaxResult;
-import com.njxnet.service.tmsp.constants.MessageSendStatusEnum;
+import com.njxnet.service.tmsp.constant.MessageSendStatusEnum;
 import com.njxnet.service.tmsp.entity.MessagesSingleSend;
 import com.njxnet.service.tmsp.model.info.SendInfo;
 import com.njxnet.service.tmsp.service.MessagesSingleSendService;

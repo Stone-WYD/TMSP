@@ -1,7 +1,7 @@
 package com.njxnet.service.tmsp.design.core1_postprocessor;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.njxnet.service.tmsp.utils.ApplicationContextUtil;
+import com.njxnet.service.tmsp.util.ApplicationContextUtil;
 
 import java.util.Collections;
 import java.util.Comparator;

@@ -3,7 +3,7 @@ package com.njxnet.service.tmsp.config.constant.mvc;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.njxnet.service.tmsp.constants.IEnum;
+import com.njxnet.service.tmsp.constant.IEnum;
 
 import java.io.IOException;
 

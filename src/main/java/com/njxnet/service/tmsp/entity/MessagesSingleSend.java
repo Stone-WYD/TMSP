@@ -2,7 +2,7 @@ package com.njxnet.service.tmsp.entity;
 
 import java.util.Date;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.njxnet.service.tmsp.constants.MessageSendStatusEnum;
+import com.njxnet.service.tmsp.constant.MessageSendStatusEnum;
 
 import java.io.Serializable;
 

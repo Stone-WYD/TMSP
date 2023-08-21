@@ -1,16 +1,12 @@
 package com.njxnet.service.tmsp.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.njxnet.service.tmsp.design.core3_pipeline.PipeLine;
-import com.njxnet.service.tmsp.design.core3_pipeline.apply.ValidatePipeLineTemplate;
-import com.njxnet.service.tmsp.utils.ApplicationContextUtil;
-import com.njxnet.service.tmsp.utils.MyThreadPoolExecutor;
+import com.njxnet.service.tmsp.util.MyThreadPoolExecutor;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

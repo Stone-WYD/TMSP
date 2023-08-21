@@ -3,7 +3,7 @@ server:
   port: 8081
 
 spring:
-#  当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
+# 当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
   datasource:
     url: jdbc:mysql://192.168.30.43:3306/tmsp?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
     username: ssfw

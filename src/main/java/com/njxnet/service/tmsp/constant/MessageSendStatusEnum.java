@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.constants;
+package com.njxnet.service.tmsp.constant;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

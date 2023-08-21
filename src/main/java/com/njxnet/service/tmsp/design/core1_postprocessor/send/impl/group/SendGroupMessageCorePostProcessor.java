@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import com.njxnet.service.tmsp.common.BaseException;
 import com.njxnet.service.tmsp.common.ResultStatusCode;
-import com.njxnet.service.tmsp.constants.SendEnum;
+import com.njxnet.service.tmsp.constant.SendEnum;
 import com.njxnet.service.tmsp.design.core1_postprocessor.PostContext;
 import com.njxnet.service.tmsp.design.core1_postprocessor.send.SendMessagePostProcessor;
 import com.njxnet.service.tmsp.design.core1_postprocessor.send.SendMessageWay;
