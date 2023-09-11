@@ -1,4 +1,4 @@
-package com.njxnet.service.tmsp.util;
+package com.njxnet.service.tmsp.autil;
 
 import cn.hutool.core.collection.CollectionUtil;
 import org.springframework.beans.BeansException;
@@ -14,6 +14,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @Description: 这个类的位置在包的较前列，单例中 @PostConstruct 注解修饰的方法使用了 ApplicationContextUtil 时，ApplicationContextUtil 需要先被创建出来，将其放在靠前的位置可以解决问题
+ * @Author: Stone
+ * @Date: 2023/9/11
+ */
 @Component
 public class ApplicationContextUtil implements ApplicationContextAware, EnvironmentAware {
 
