@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class ReactorDesignConfig {
 
-    private final static Cache<String, Boolean> localCache = CacheBuilder
+    public final static Cache<String, Boolean> localCache = CacheBuilder
             .newBuilder()
             // 设置 cache 的初始大小为 100（要合理设置该值）
             .initialCapacity(100)
