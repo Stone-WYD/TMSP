@@ -61,6 +61,8 @@ public class ReactorDesignConfig {
         asynRemoteChannel.addResultRenderHandler(
                 // TODO: 2023/8/2 这里做演示用，实际情况如果不是单体的，则要用集群缓存
                 channelContext -> {
+                    // TODO: 2023/10/17  缓存在代码中并没有被使用到，在当前示例中只用作展示。
+                    //  具体如果有需要，localCache 的 key 可以不是 callId，而是根据实际传参而定。如果这样做，在调用方法前，就可以先看是否命中缓存来减小服务器压力
                     localCache.put(channelContext.getCallId(), (Boolean) channelContext.getAsynReceptResult().getData());
                 }
         );
