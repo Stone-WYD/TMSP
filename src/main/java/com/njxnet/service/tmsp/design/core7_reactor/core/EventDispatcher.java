@@ -74,7 +74,7 @@ public class EventDispatcher {
             // 应用线程分发
             appWorker.subTask(()-> walkPipeLine(preparePipeLine, baseEvent));
         }else if (baseEvent instanceof ResultRenderEvent) {
-            // 结果线程分发
+            // 应用线程分发
             appWorker.subTask(()-> walkPipeLine(resultRenderPipeLine, baseEvent));
         }else if (baseEvent instanceof RemoteRequestEvent) {
             // 结果线程分发
