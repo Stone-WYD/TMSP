@@ -37,14 +37,13 @@ public class MyConfig {
         // 通过核心数确定线程数
         int processors = Runtime.getRuntime().availableProcessors();
         log.info("processors:{}", processors);
-        MyThreadPoolExecutor myThreadPoolExecutor = new MyThreadPoolExecutor(processors,
+        return new MyThreadPoolExecutor(processors,
                 processors * 2,
                 0L,
                 TimeUnit.MINUTES,
                 new LinkedBlockingDeque<>(1000),
                 threadFactory,
                 new ThreadPoolExecutor.AbortPolicy());
-        return myThreadPoolExecutor;
     }
 
 
