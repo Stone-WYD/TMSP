@@ -23,4 +23,6 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
             log.error("MyThreadPoolExecutor occur error:{}", e.getLocalizedMessage());
         }
     }
+
+
 }
