@@ -77,8 +77,8 @@ public class ReactorDesignConfig {
         return new AsynRemoteServiceProxy<Boolean>() {
             @Override
             public AjaxResult<String> call(ChannelContext channelContext) {
-                Map contextMap = channelContext.getContextMap();
-                SendInfo sendInfo = (SendInfo) contextMap.get("sendInfo");
+                Map paramMap = channelContext.getParamMap();
+                SendInfo sendInfo = (SendInfo) paramMap.get("sendInfo");
                 return remoteMessageSendService.send(sendInfo);
             }
 
