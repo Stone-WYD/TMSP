@@ -97,6 +97,8 @@ knife4j:
     language: zh_cn
 
 config:
+  reactor:
+    enable: false
   send:
     type: rest # webclient
   url:

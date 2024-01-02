@@ -3,7 +3,6 @@ package com.njxnet.service.tmsp.design.core7_reactor.worker;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.njxnet.service.tmsp.util.MyThreadPoolExecutor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadFactory;
@@ -16,10 +15,9 @@ import java.util.concurrent.TimeUnit;
  * @author: Stone
  * @create: 2023-07-30 18:26
  **/
-@Component
 @Slf4j
 public class NetWorker extends Worker{
-    private static ThreadPoolExecutor netExecutor;
+    private static final ThreadPoolExecutor netExecutor;
 
     static{
         // 给线程命名

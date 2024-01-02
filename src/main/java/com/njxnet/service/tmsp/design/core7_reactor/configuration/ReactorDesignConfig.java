@@ -12,6 +12,7 @@ import com.njxnet.service.tmsp.design.core7_reactor.service.RemoteMessageSendSer
 import com.njxnet.service.tmsp.design.core7_reactor.worker.AppWorker;
 import com.njxnet.service.tmsp.design.core7_reactor.worker.NetWorker;
 import com.njxnet.service.tmsp.model.info.SendInfo;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,6 +26,7 @@ import java.util.concurrent.TimeUnit;
  * @create: 2023-07-31 10:09
  **/
 @Configuration
+@ConditionalOnProperty(prefix = "config.reactor", name = "enable", havingValue = "true")
 public class ReactorDesignConfig {
 
     public final static Cache<String, Boolean> localCache = CacheBuilder
@@ -37,6 +39,16 @@ public class ReactorDesignConfig {
             .expireAfterWrite(1, TimeUnit.MINUTES)
             // 构建 cache 实例
             .build();
+
+    @Bean
+    public AppWorker appWorker() {
+        return new AppWorker();
+    }
+
+    @Bean
+    public NetWorker netWorker() {
+        return new NetWorker();
+    }
 
     @Bean
     public AsynRemoteChannel remoteMessageChannel(RemoteMessageSendService remoteMessageSendService,
