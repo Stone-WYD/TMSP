@@ -11,13 +11,5 @@
         <sqlFile dbms="mysql" endDelimiter=";" encoding="UTF-8" path="liquibase/data/test1.sql"/>
     </changeSet>
 
-<!--    <changeSet id="00000000000001" author="wyd">
-        <sqlFile dbms="mysql" endDelimiter=";" encoding="UTF-8" path="liquibase/data/init_schema_240102.sql"/>
-    </changeSet>
-
-    <changeSet id="00000000000002" author="wyd">
-        <sqlFile dbms="mysql" endDelimiter=";" encoding="UTF-8" path="liquibase/data/init_data_240102.sql"/>
-    </changeSet>-->
-
 
 </databaseChangeLog>

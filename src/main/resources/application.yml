@@ -2,13 +2,14 @@ server:
   # 端口
   port: 8081
 
+# 默认的数据库名
+database:
+  name: tmsp
+
 spring:
-
-
-
   # 当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
   datasource:
-    url: jdbc:mysql://192.168.30.43:3306/tmsp?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.30.43:3306/${database.name}?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
     username: ssfw
     password: njxnet1234
     driverClassName: com.mysql.cj.jdbc.Driver
