@@ -1,6 +1,7 @@
 package com.njxnet.service.tmsp.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.njxnet.service.tmsp.util.ApplicationContextUtil;
 import com.njxnet.service.tmsp.util.MyThreadPoolExecutor;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -23,11 +23,15 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @Slf4j
-@DependsOn("applicationContextUtil")
 public class MyConfig {
 
     @Value("${config.url.base}")
     private String baseUrl;
+
+    @Bean
+    public ApplicationContextUtil applicationContextUtil() {
+        return new ApplicationContextUtil();
+    }
 
     @Bean
     public ThreadPoolExecutor myThreadPoolExecutor(){

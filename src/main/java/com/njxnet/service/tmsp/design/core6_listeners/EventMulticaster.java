@@ -3,7 +3,7 @@ package com.njxnet.service.tmsp.design.core6_listeners;
 import cn.hutool.core.collection.CollectionUtil;
 import com.njxnet.service.tmsp.design.core6_listeners.event.Event;
 import com.njxnet.service.tmsp.design.core6_listeners.listener.EventListener;
-import com.njxnet.service.tmsp.autil.ApplicationContextUtil;
+import com.njxnet.service.tmsp.util.ApplicationContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

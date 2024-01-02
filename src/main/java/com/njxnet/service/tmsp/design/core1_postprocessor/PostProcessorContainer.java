@@ -1,9 +1,8 @@
 package com.njxnet.service.tmsp.design.core1_postprocessor;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.njxnet.service.tmsp.autil.ApplicationContextUtil;
+import com.njxnet.service.tmsp.util.ApplicationContextUtil;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class PostProcessorContainer<T>{
         if (CollectionUtil.isEmpty(postProcessors)) return true; // 没有操作则返回true
 
         // 优先级越高，执行时越靠近核心
-        Collections.sort(postProcessors, Comparator.comparing((BasePostProcessor o) -> Integer.valueOf(o.getPriprity())));
+        postProcessors.sort(Comparator.comparing((BasePostProcessor o) -> o.getPriprity()));
 
         for (BasePostProcessor postProcessor : postProcessors) {
             // 如果支持处理，才会处理
@@ -45,7 +44,7 @@ public class PostProcessorContainer<T>{
         if (CollectionUtil.isEmpty(postProcessors)) return ;
 
         // 优先级越高，执行时越靠近核心
-        Collections.sort(postProcessors, Comparator.comparing((BasePostProcessor o) -> Integer.valueOf(o.getPriprity())).reversed());
+        postProcessors.sort(Comparator.comparing((BasePostProcessor o) -> o.getPriprity()).reversed());
 
         for (BasePostProcessor postProcessor : postProcessors) {
             // 如果支持处理，才会处理

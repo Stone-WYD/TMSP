@@ -1,13 +1,13 @@
-package com.njxnet.service.tmsp.autil;
+package com.njxnet.service.tmsp.util;
 
 import cn.hutool.core.collection.CollectionUtil;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +19,7 @@ import java.util.Map;
  * @Author: Stone
  * @Date: 2023/9/11
  */
-@Component
-public class ApplicationContextUtil implements ApplicationContextAware, EnvironmentAware {
+public class ApplicationContextUtil implements ApplicationContextAware, EnvironmentAware, BeanPostProcessor {
 
     public static ApplicationContext applicationContext;
 
@@ -73,9 +72,6 @@ public class ApplicationContextUtil implements ApplicationContextAware, Environm
     public static <T> List<T> getBeansOfType(Class<T> type){
         List<T> result = new ArrayList<>();
         Map<String, T> beansOfType = applicationContext.getBeansOfType(type);
-        if (beansOfType == null) {
-            return null;
-        }
         for (Map.Entry<String, T> b : beansOfType.entrySet()) {
             result.add(b.getValue());
         }
@@ -87,9 +83,6 @@ public class ApplicationContextUtil implements ApplicationContextAware, Environm
      */
     public static List<String> getBeanNamesForType(Class type){
         String[] tem = applicationContext.getBeanNamesForType(type);
-        if (tem == null) {
-            return new ArrayList<>();
-        }
         return Arrays.asList(tem);
 
     }

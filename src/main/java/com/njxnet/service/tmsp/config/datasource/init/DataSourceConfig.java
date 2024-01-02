@@ -4,7 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.google.common.collect.Maps;
 import com.njxnet.service.tmsp.config.datasource.context.DsAspect;
 import com.njxnet.service.tmsp.config.datasource.context.DsEnum;
-import com.njxnet.service.tmsp.autil.ApplicationContextUtil;
+import com.njxnet.service.tmsp.util.ApplicationContextUtil;
 import com.njxnet.service.tmsp.util.DruidCheckUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
@@ -108,7 +108,7 @@ public class DataSourceConfig implements EnvironmentAware, DisposableBean {
     * @Date: 2023/7/14
     */
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         log.info("关闭数据池连接");
         DataSource dataSource = ApplicationContextUtil.getBeanOfType(DataSource.class);
         if (dataSource instanceof MyRoutingDataSource) {

@@ -4,10 +4,9 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.njxnet.service.tmsp.design.core3_pipeline.PipeLine;
 import com.njxnet.service.tmsp.design.core3_pipeline.Valve;
 import com.njxnet.service.tmsp.design.core3_pipeline.ValveContext;
-import com.njxnet.service.tmsp.autil.ApplicationContextUtil;
+import com.njxnet.service.tmsp.util.ApplicationContextUtil;
 import lombok.Data;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public abstract class BasePipeLine<T extends Valve, C extends ValveContext> impl
         }
 
         // 排序
-        Collections.sort(valveList, Comparator.comparing((T o) -> o.getPriprity()));
+        valveList.sort(Comparator.comparing(Valve::getPriprity));
 
         // 拼接 valve 链条
         for (int i = 0; i < valveList.size()-1; i++) {

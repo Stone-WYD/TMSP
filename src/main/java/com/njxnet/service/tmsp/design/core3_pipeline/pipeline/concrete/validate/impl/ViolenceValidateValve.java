@@ -5,7 +5,7 @@ import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.validate.
 import com.njxnet.service.tmsp.design.core3_pipeline.pipeline.concrete.validate.ValidateValveContext;
 import com.njxnet.service.tmsp.design.core4_aware.ValidateContent;
 import com.njxnet.service.tmsp.design.core4_aware.ValidateContentAware;
-import com.njxnet.service.tmsp.autil.ApplicationContextUtil;
+import com.njxnet.service.tmsp.util.ApplicationContextUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
