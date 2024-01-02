@@ -49,9 +49,13 @@ public class LoginController {
     // 将冻结的账号封禁
     @PostConstruct
     public void init(){
-        List<TmspSysUser> list = sysUserService.query().eq("status", 0).list();
-        if (CollectionUtil.isNotEmpty(list)) {
-            list.forEach(user -> StpUtil.disable(user.getId(), -1));
+        try {
+            List<TmspSysUser> list = sysUserService.query().eq("status", 0).list();
+            if (CollectionUtil.isNotEmpty(list)) {
+                list.forEach(user -> StpUtil.disable(user.getId(), -1));
+            }
+        } catch (Exception e) {
+            log.info("LoginController init(): 将冻结的账号封禁功能异常，请核对是否有异常发生！");
         }
     }
 

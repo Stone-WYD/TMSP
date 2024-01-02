@@ -3,13 +3,22 @@ server:
   port: 8081
 
 spring:
-# 当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
+
+
+
+  # 当不加 dynamic 配置时，仍可以使用以下单一数据源配置，切换方便
   datasource:
     url: jdbc:mysql://192.168.30.43:3306/tmsp?characterEncoding=utf8&usSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
     username: ssfw
     password: njxnet1234
     driverClassName: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+
+  liquibase:
+    change-log: classpath:liquibase/master.xml
+    # 当使用的数据库不支持 liquibase，如 mariadb 时，将这个参数设置为 false
+    enabled: true
+
 #  dynamic: #动态数据源
 #    primary: tmsp #表示默认的数据源
 #    datasource:

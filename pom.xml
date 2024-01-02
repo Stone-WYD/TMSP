@@ -123,12 +123,23 @@
             <version>21.0</version>
         </dependency>
 
+        <!-- 数据库版本管理 -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
 
         <!--生成验证码-->
         <dependency>
             <groupId>com.github.cage</groupId>
             <artifactId>cage</artifactId>
             <version>${cage.version}</version>
+        </dependency>
+
+        <!-- 点击配置文件 yml 可以快速跳转到配置类（@ConfigurationProperties） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
         <!-- WebClient的使用 -->
