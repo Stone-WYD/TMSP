@@ -51,10 +51,10 @@ CREATE TABLE `court`  (
   `postcode` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮编',
   `dept_position` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '部门职位',
   `complaint_channel` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '投诉渠道',
-  `address` varchar(220) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '办公地址',
+  `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '办公地址',
   `reception_time` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '接待时间',
-  `case_filling_tel` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '立案咨询电话',
-  `litigation_service_tel` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '诉讼服务电话',
+  `case_filling_tel` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '立案咨询电话',
+  `litigation_service_tel` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '诉讼服务电话',
   `court_info` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '法院信息',
   `longitude` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '经度',
   `latitude` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '纬度',
@@ -64,10 +64,10 @@ CREATE TABLE `court`  (
   `court_code_hy` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '法院编码（华宇）',
   `pay_qrcode_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `logo_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `fault_notice_mobile` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '设备故障通知号码',
+  `fault_notice_mobile` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '设备故障通知号码',
   `framework` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7548 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '法院表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7548 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '法院表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of court
